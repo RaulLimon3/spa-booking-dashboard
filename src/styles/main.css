@@ -1,3 +1,7 @@
 @import './base/resets.css';
 @import './base/variables.css';
 @import './base/typography.css';
+@import './layout/wrapper.css';
+@import './layout/sidebar.css';
+@import './layout/topbar.css';
+@import './layout/main.css';
