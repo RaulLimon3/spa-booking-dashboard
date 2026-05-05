@@ -17,6 +17,18 @@
     --color-error: #52B788;
     --color-info: #3B82F6;
 
+    /* 📌 Hover elements */
+
+    /* Enlaces */
+    --hover-link-bg: var(--color-primary-soft);
+    --hover-link-text: var(--color-text-main);
+
+    /* 📌 Active elements */
+
+    /* Enlaces */
+    --active-link-bg: var(--color-primary-soft);
+    --active-link-text: var(--color-text-main);
+
     /* 📌 Fonst */
 
     /* Fonts family */
