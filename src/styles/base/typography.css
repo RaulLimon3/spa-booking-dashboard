@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'StackSansHeading';
+    src: url('/src/assets/fonts/headings/StackSansHeadline-VariableFont_wght.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'StackSansText';
+    src: url('/src/assets/fonts/texts/StackSansText-VariableFont_wght.ttf') format('truetype');
+}

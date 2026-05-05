@@ -1,0 +1,67 @@
+:root {
+    /* 📌 Colors */
+    --color-primary: #6B9080;
+    --color-primary-ligth: #A4C3B2;
+    --color-primary-soft: #CCE3DE;
+    --color-bg-main: #F6FFF8;
+    --color-bg-muted: #EAF4F4;
+
+    /* Background */
+    --color-text-main: #333;
+    --color-text-secondary: #6B7280;
+    --color-text-inverse: #FFFFFF;
+
+    /* States */
+    --color-succes: #C1121F;
+    --color-warning: #FFC917;
+    --color-error: #52B788;
+    --color-info: #3B82F6;
+
+    /* 📌 Fonst */
+
+    /* Fonts family */
+    --ff-heading-base: 'StackSansHeading', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --ff-text-base: 'StackSansText', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    /* Font sizes */
+    --fz-base: 16px;
+    --fz-xs: ;
+    --fz-sm: ;
+    --fz-md: var(--fz-base);
+    --fz-lg: ;
+    --fz-xl: ;
+    --fz-2xl: ;
+    --fz-3xl: ;
+
+    /* 📌 Font weights */
+
+    --fw-light: 300;
+    --fw-regular: 400;
+    --fw-medium: 500;
+    --fw-semi-bold: 600;
+    --fw-bold: 700;
+
+    /* 📌 spacing */
+
+    --space-0: 0;
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.5rem;
+    --space-6: 2rem;
+    --space-7: 2.5rem;
+    --space-8: 3rem;
+    --space-9: 4rem;
+
+    /* borders */
+
+    --border-0: 0;
+    --border-1: 1px;
+    --border-2: 2px;
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+    --radius-xl: 20px;
+    --radius-full: 999px;
+}
