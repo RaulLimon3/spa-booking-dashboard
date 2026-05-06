@@ -25,7 +25,7 @@
       <nav class="navbar">
         <ul class="navbar__list">
           <li class="navbar__item">
-            <a href="#" class="navbar__link" aria-current="page">
+            <a href="#" class="navbar__link" aria-current="page" data-section="Dashboard">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                 class="lucide lucide-layout-dashboard-icon lucide-layout-dashboard icon">
@@ -38,7 +38,7 @@
             </a>
           </li>
           <li class="navbar__item">
-            <a href="#" class="navbar__link">
+            <a href="#" class="navbar__link" data-section="Citas">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                 class="lucide lucide-calendar-icon lucide-calendar icon">
@@ -51,7 +51,7 @@
             </a>
           </li>
           <li class="navbar__item">
-            <a href="#" class="navbar__link">
+            <a href="#" class="navbar__link" data-section="Clientes">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                 class="lucide lucide-book-user-icon lucide-book-user icon">
@@ -63,7 +63,7 @@
             </a>
           </li>
           <li class="navbar__item">
-            <a href="#" class="navbar__link">
+            <a href="#" class="navbar__link" data-section="Servicios">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                 class="lucide lucide-settings2-icon lucide-settings-2 icon">
@@ -80,10 +80,13 @@
     </aside>
     <header class="header">
       <div class="header__title">
-        <h2 class="title__section" id="titleSection">Nombre de la seccion</h2>
+        <h2 class="title__section" id="titleSection">Dashboard</h2>
       </div>
       <div class="header__user">
-        <p class="user__text">Bienvenido <span class="user__name">Raul</span></p>
+        <div class="user__data">
+          <p class="user__text">Bienvenido <span class="user__name">Raul</span></p>
+          <img class="user__icon" src="./src/assets/icons/circle-user-round.svg" alt="Icono de usuario">
+        </div>
       </div>
     </header>
     <main class="main">

@@ -13,3 +13,9 @@
     color: var(--color-primary);
     font-weight: var(--fw-bold);
 }
+
+.user__icon {
+    background: var(--color-primary);
+    padding: var(--space-1);
+    border-radius: var(--radius-full);
+}

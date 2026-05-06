@@ -1,6 +1,11 @@
 const initNavBar = () => {
     // Accedemos a nuestro contenedor de los enlaces
     const navbarContainer = document.querySelector('.navbar__list');
+    // Accedemos a nuestro titulo del header
+    const headerTitle = document.getElementById('titleSection');
+
+    // Validamos que existan nuestros elementos
+    if (!navbarContainer || !headerTitle) return;
 
     // Esperamos a que le den clic
     navbarContainer.addEventListener('click', (e) => {
@@ -22,6 +27,12 @@ const initNavBar = () => {
 
         // Colocamos el elemento activo
         links.setAttribute('aria-current', 'page');
+
+        // Extraemos el valor del link
+        const section = links.dataset.section;
+
+        // Colocamos el nombre de la seccion
+        headerTitle.textContent = section;
     });
 };
 

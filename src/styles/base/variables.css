@@ -37,13 +37,13 @@
 
     /* Font sizes */
     --fz-base: 16px;
-    --fz-xs: ;
-    --fz-sm: ;
+    --fz-xs: 0.75rem;
+    --fz-sm: 0.875rem;
     --fz-md: var(--fz-base);
-    --fz-lg: ;
-    --fz-xl: ;
-    --fz-2xl: ;
-    --fz-3xl: ;
+    --fz-lg: 1.125rem;
+    --fz-xl: 1.25rem;
+    --fz-2xl: 1.5rem;
+    --fz-3xl: 1.875rem;
 
     /* 📌 Font weights */
 
