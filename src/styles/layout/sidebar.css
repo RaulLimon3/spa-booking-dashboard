@@ -9,6 +9,10 @@
     gap: var(--space-4);
 }
 
+.aside__logo {
+    width: 100%;
+}
+
 .navbar {
     width: 100%;
 }
@@ -26,6 +30,9 @@
 
 .navbar__link {
     width: 100%;
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
     padding: var(--space-2);
     border-radius: var(--radius-sm);
     color: var(--color-text-secondary);
