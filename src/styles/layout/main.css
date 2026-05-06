@@ -7,11 +7,18 @@
     display: flex;
     flex-direction: column;
     gap: var(--space-8);
-    padding: var(--space-6);
+    padding: var(--space-4);
 }
 
 .main__heading {
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.main__section {
+    height: calc(100dvh - 25dvh);
+    background: var(--color-bg-muted);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
 }

@@ -1,0 +1,20 @@
+.btn {
+    background: var(--btn-bg);
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
+    color: var(--color-text-secondary);
+    font-weight: var(--fw-semi-bold);
+    transition: background 0.3s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.btn:hover {
+    background: var(--btn-bg-hover);
+    color: var(--color-text-main);
+    box-shadow: var(--shadow-md);
+}
+
+.btn:active {
+    transform: scale(0.97);
+    box-shadow: inset 2px 2px 20px rgba(0, 0, 0, 0.1);
+    color: var(--color-text-inverse);
+}

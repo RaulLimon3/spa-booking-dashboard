@@ -17,6 +17,12 @@
     --color-error: #52B788;
     --color-info: #3B82F6;
 
+    /* 📌 Buttons */
+
+    --btn-bg: var(--color-primary-soft);
+    --btn-bg-hover: var(--color-primary-ligth);
+    --btn-bg-active: var(--color-primary);
+
     /* 📌 Hover elements */
 
     /* Enlaces */
@@ -76,4 +82,11 @@
     --radius-lg: 14px;
     --radius-xl: 20px;
     --radius-full: 999px;
+
+    /* Shadows */
+
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.15);
+    --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.2);
 }
