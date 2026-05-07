@@ -1,0 +1,32 @@
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-1);
+    color: var(--color-text-secondary);
+    border-radius: var(--radius-full);
+    background: rgba(81, 87, 97, 0.1);
+}
+
+.badge::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: var(--radius-full);
+    background: currentColor;
+}
+
+.badge--success {
+    background: rgba(34, 197, 94, 0.1);
+    color: var(--color-success);
+}
+
+.badge--warning {
+    background: rgba(234, 179, 8, 0.1);
+    color: var(--color-warning);
+}
+
+.badge--error {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--color-error);
+}

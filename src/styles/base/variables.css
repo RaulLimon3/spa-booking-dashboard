@@ -12,9 +12,9 @@
     --color-text-inverse: #FFFFFF;
 
     /* States */
-    --color-succes: #C1121F;
+    --color-error: #C1121F;
     --color-warning: #FFC917;
-    --color-error: #52B788;
+    --color-success: #52B788;
     --color-info: #3B82F6;
 
     /* 📌 Buttons */

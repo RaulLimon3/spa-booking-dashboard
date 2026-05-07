@@ -19,6 +19,6 @@
 .main__section {
     height: calc(100dvh - 25dvh);
     background: var(--color-bg-muted);
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-md);
     box-shadow: var(--shadow-lg);
 }

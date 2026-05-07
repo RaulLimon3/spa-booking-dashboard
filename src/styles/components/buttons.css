@@ -18,3 +18,19 @@
     box-shadow: inset 2px 2px 20px rgba(0, 0, 0, 0.1);
     color: var(--color-text-inverse);
 }
+
+.btn__danger {
+    flex: 1;
+    background: var(--color-bg-main);
+}
+
+.btn__danger:hover {
+    color: var(--color-text-inverse);
+    background: var(--color-error);
+}
+
+.btn__success {
+    flex: 1;
+    background: var(--color-primary);
+    color: var(--color-text-inverse);
+}
