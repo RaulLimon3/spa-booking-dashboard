@@ -1,6 +1,7 @@
 .card__table {
     border: 2px solid var(--color-bg-muted);
     border-radius: var(--radius-md);
+    overflow-x: auto;
 }
 
 .table {

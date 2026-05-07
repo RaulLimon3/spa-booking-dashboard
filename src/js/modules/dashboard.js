@@ -14,7 +14,7 @@ export const renderDashboard = () => {
                 <div class="card">
                     <div class="card__content">
                         <div class="card__heading">
-                            <img src="./src/assets/icons/banknote-arrow-up.svg" alt="Icono de calendario">
+                            <img src="./src/assets/icons/banknote-arrow-up.svg" alt="Icono de ingresos">
                             <p class="card__text">Total de ingresos</p>
                         </div>
                         <span class="card__summary" id="totalIncome">0</span>
@@ -23,7 +23,7 @@ export const renderDashboard = () => {
                 <div class="card">
                     <div class="card__content">
                         <div class="card__heading">
-                            <img src="./src/assets/icons/calendar-plus.svg" alt="Icono de calendario">
+                            <img src="./src/assets/icons/calendar-plus.svg" alt="Icono de nuevas citas">
                             <p class="card__text">Total de citas nuevas</p>
                         </div>
                         <span class="card__summary" id="newQuotes">0</span>
@@ -32,7 +32,7 @@ export const renderDashboard = () => {
                 <div class="card">
                     <div class="card__content">
                         <div class="card__heading">
-                            <img src="./src/assets/icons/book-user.svg" alt="Icono de calendario">
+                            <img src="./src/assets/icons/book-user.svg" alt="Icono de clientes">
                             <p class="card__text">Total de clientes</p>
                         </div>
                         <span class="card__summary" id="totalClients">0</span>
@@ -95,5 +95,5 @@ export const renderDashboard = () => {
                 </div>
             </div>
         </div>
-    `
-}
+    `;
+};

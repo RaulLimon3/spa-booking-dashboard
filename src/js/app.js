@@ -18,7 +18,7 @@ const routes = {
     servicios: renderServicios
 }
 
-dashboardSection.innerHTML = routes.dashboard();
+// dashboardSection.innerHTML = routes.dashboard();
 
 // Accedemos a la seccion activa
 const currentSection = document.querySelectorAll('[data-section]');
@@ -30,5 +30,5 @@ currentSection.forEach(btn => {
         const section = btn.dataset.section;
         // Mostramos el dashboard correspondiente
         dashboardSection.innerHTML = routes[section]();
-    })
-})
+    });
+});
