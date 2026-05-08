@@ -52,26 +52,20 @@ export const renderCitas = () => {
                                     <input type="text" name="search" id="appointmentsSearch" class="input" placeholder="Buscar">
                                 </div>
                                 <div class="filters__input">
-                                    <div class="filter">
-                                        <input type="date" name="date" id="appointmentsDate">
-                                    </div>
-                                    <div class="filter">
-                                        <select name="status" id="appointmentStatus">
-                                            <option value="" disabled selected hidden>Status</option>
-                                            <option value="todos">Todos</option>
-                                            <option value="pendiente">Pendiente</option>
-                                            <option value="atendido">Atendido</option>
-                                            <option value="cancelado">Cancelado</option>
-                                        </select>
-                                    </div>
-                                    <div class="filter">
-                                        <select name="service" id="service">
-                                            <option value="" disabled selected hidden>Servicio</option>
-                                            <option value="todos">Todos</option>
-                                            <option value="facial">Facial</option>
-                                            <option value="masaje">Masaje</option>
-                                        </select>
-                                    </div>
+                                    <input class="filter input" type="date" name="date" id="appointmentsDate">
+                                    <select class="filter filter--select input" name="status" id="appointmentStatus">
+                                        <option value="" disabled selected hidden>Status</option>
+                                        <option value="todos">Todos</option>
+                                        <option value="pendiente">Pendiente</option>
+                                        <option value="atendido">Atendido</option>
+                                        <option value="cancelado">Cancelado</option>
+                                    </select>
+                                    <select class="filter filter--select input" name="service" id="service">
+                                        <option value="" disabled selected hidden>Servicio</option>
+                                        <option value="todos">Todos</option>
+                                        <option value="facial">Facial</option>
+                                        <option value="masaje">Masaje</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>

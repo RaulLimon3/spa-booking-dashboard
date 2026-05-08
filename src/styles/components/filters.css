@@ -1,0 +1,26 @@
+.filters {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+}
+
+.filters__input {
+    display: flex;
+    flex: 1;
+    gap: var(--space-1);
+}
+
+.filter {
+    width: 100%;
+    appearance: none;
+    padding: var(--space-2);
+}
+
+.filter--select {
+    background-image: url('../../assets/icons/chevron-down.svg');
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+}

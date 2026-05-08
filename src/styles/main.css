@@ -11,4 +11,6 @@
 @import './components/tables.css';
 @import './components/badge.css';
 @import './components/filters.css';
+@import './components/inputs.css';
+@import './components/searchbar.css';
 @import './pages/dashboard.css';
