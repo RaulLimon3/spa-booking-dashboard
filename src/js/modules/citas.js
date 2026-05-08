@@ -1,6 +1,6 @@
 export const renderCitas = () => {
     return `
-        <div class="dashboard" id="dashboard">
+        <div class="dashboard" id="appointments">
             <div class="dashboard__statistics">
                 <div class="card">
                     <div class="card__content">
@@ -81,7 +81,7 @@ export const renderCitas = () => {
                                         <th class="table__col">Acciones</th>
                                     </tr>
                                 </thead>
-                                <tbody class="table__body" id="tableBody">
+                                <tbody class="table__body" id="appointmentsTableBody">
                                     <tr class="table__row">
                                         <td class="table__cell">Raul Limon</td>
                                         <td class="table__cell">Facial</td>

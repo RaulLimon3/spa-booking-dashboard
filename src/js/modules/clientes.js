@@ -1,6 +1,6 @@
 export const renderClientes = () => {
     return `
-        <div class="dashboard" id="dashboard">
+        <div class="dashboard" id="clients">
             <div class="dashboard__information">
                 <div class="card">
                     <div class="card__content">
@@ -23,7 +23,7 @@ export const renderClientes = () => {
                                         <th class="table__col">Acciones</th>
                                     </tr>
                                 </thead>
-                                <tbody class="table__body" id="tableBody">
+                                <tbody class="table__body" id="clientsTableBody">
                                     <tr class="table__row">
                                         <td class="table__cell">Raul Limon</td>
                                         <td class="table__cell">1234567890</td>

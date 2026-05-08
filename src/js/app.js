@@ -18,9 +18,10 @@ const routes = {
     Servicios: renderServicios
 }
 
-// dashboardSection.innerHTML = routes.Dashboard();
+// Mostramos el panel de control inicial
+dashboardSection.innerHTML = routes.Dashboard();
 
-// Accedemos a la seccion activa
+// Accedemos a la secciones existentes
 const currentSection = document.querySelectorAll('[data-section]');
 
 // Esperamos a que den clic sobre la seccion a elegir
