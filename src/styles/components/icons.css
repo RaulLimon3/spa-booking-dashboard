@@ -3,15 +3,49 @@
     height: 24px;
     fill: none;
     stroke: currentColor;
+    flex-shrink: 0;
 }
 
 .logo {
     display: flex;
     align-items: center;
-    justify-content: center;
     gap: var(--space-2);
     color: var(--color-primary);
     font-weight: var(--fw-bold);
+}
+
+.icon__btn {
+    color: var(--color-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--space-1);
+    background: transparent;
+    border-radius: var(--radius-md);
+    transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.icon__btn:hover {
+    background: var(--color-primary-soft);
+    box-shadow: var(--shadow-sm);
+}
+
+.icon__btn:active {
+    transform: scale(0.96);
+    color: var(--color-text-inverse);
+    background: var(--color-primary);
+}
+
+.icon__btn--close {
+    color: var(--color-text-secondary);
+}
+
+.icon__btn--close:hover {
+    color: var(--color-text-main);
+}
+
+.icon__btn--close:active {
+    color: var(--color-text-inverse);
 }
 
 .user__icon {
