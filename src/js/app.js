@@ -12,13 +12,13 @@ const dashboardSection = document.getElementById('dashboardSection');
 
 // Declaramos nuestos paneles existente
 const routes = {
-    dashboard: renderDashboard,
-    citas: renderCitas,
-    clientes: renderClientes,
-    servicios: renderServicios
+    Dashboard: renderDashboard,
+    Citas: renderCitas,
+    Clientes: renderClientes,
+    Servicios: renderServicios
 }
 
-// dashboardSection.innerHTML = routes.dashboard();
+// dashboardSection.innerHTML = routes.Dashboard();
 
 // Accedemos a la seccion activa
 const currentSection = document.querySelectorAll('[data-section]');

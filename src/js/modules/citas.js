@@ -43,7 +43,7 @@ export const renderCitas = () => {
                 <div class="card">
                     <div class="card__content">
                         <div class="card__heading">
-                            <img src="./src/assets/icons/book-plus.svg" alt="">
+                            <img src="./src/assets/icons/book-plus.svg" alt="Icono de nuevas citas">
                             <p class="card__text">Nuevas citas</p>
                         </div>
                         <div class="card__panel-control">
