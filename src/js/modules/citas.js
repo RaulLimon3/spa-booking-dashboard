@@ -49,7 +49,7 @@ export const renderCitas = () => {
                         <div class="card__panel-control">
                             <div class="filters">
                                 <div class="searchbar">
-                                    <input type="text" name="search" id="appointmentsSearch" class="input" placeholder="Buscar">
+                                    <input type="text" name="search" id="appointmentsSearch" class="input input__search" placeholder="Buscar">
                                 </div>
                                 <div class="filters__input">
                                     <input class="filter input" type="date" name="date" id="appointmentsDate">
