@@ -38,6 +38,7 @@
 
 .icon__btn--close {
     color: var(--color-text-secondary);
+    display: none;
 }
 
 .icon__btn--close:hover {
@@ -52,4 +53,8 @@
     background: var(--color-primary);
     padding: var(--space-1);
     border-radius: var(--radius-full);
+}
+
+.aside--expanded .icon__btn--close {
+    display: flex;
 }

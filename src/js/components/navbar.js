@@ -36,4 +36,21 @@ const initNavBar = () => {
     });
 };
 
-export { initNavBar };
+const toggleSidebar = () => {
+    // Accedemos a nuestro contenedor 
+    const logoContainer = document.querySelector('.aside');
+
+    // Esperamos a que den clic sobre algun boton
+    logoContainer.addEventListener('click', (e) => {
+        // Extraemos el boton que se le dio clic
+        const button = e.target.closest('.icon__btn');
+
+        // Verificamos que se de clic sobre los botones
+        if (!button) return;
+
+        // Mostramos/Ocultamos el sidebar
+        logoContainer.classList.toggle('aside--expanded');
+    });
+};
+
+export { initNavBar, toggleSidebar };

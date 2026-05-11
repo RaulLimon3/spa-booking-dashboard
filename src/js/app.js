@@ -1,4 +1,4 @@
-import { initNavBar } from "./components/navbar";
+import { initNavBar, toggleSidebar } from "./components/navbar";
 import { renderCitas } from "./modules/citas";
 import { renderClientes } from "./modules/clientes";
 import { renderDashboard } from "./modules/dashboard";
@@ -6,6 +6,8 @@ import { renderServicios } from "./modules/servicios";
 
 // Cargamos el contenido 
 initNavBar();
+
+toggleSidebar();
 
 // Accedemos a nuestro contenedor dinamico
 const dashboardSection = document.getElementById('dashboardSection');

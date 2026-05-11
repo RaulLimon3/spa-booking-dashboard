@@ -21,4 +21,5 @@
     background: var(--color-bg-muted);
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-lg);
+    overflow-y: auto;
 }

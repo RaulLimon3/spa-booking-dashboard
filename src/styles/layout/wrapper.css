@@ -4,7 +4,7 @@
         'aside header'
         'aside main'
     ;
-    grid-template-columns: 230px 1fr;
+    grid-template-columns: auto 1fr;
     grid-template-rows: 80px 1fr;
     height: 100dvh;
 }

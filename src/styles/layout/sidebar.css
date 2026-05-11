@@ -12,8 +12,9 @@
 .aside__logo {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    gap: var(--space-4);
 }
 
 .navbar {
@@ -62,4 +63,14 @@
     color: var(--active-link-text);
     background: var(--active-link-bg);
     font-weight: var(--fw-semi-bold);
+}
+
+.navbar__text,
+.logo__text {
+    display: none;
+}
+
+.aside--expanded .navbar__text,
+.aside--expanded .logo__text {
+    display: block;
 }
