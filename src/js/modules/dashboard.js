@@ -1,43 +1,25 @@
+import { renderNewAppointments, renderTodayAppointments, renderTotalClients, renderTotalIncomes } from "../app";
+import { statCard, renderValue } from "../components/cards";
+import { dashboardColumns } from "../components/columns";
+import { table } from "../components/tables";
+import { citas } from "../store/store";
+
 export const renderDashboard = () => {
+    // Extraemos los datos
+    const todayAppointments = renderTodayAppointments();
+    const totalIncomes = renderTotalIncomes();
+    const newAppointments = renderNewAppointments();
+    const totalClients = renderTotalClients();
+
+    // Mostramos nuestro Dashboard
     return `
         <div class="dashboard" id="dashboard">
             <div class="dashboard__statistics">
-                <div class="card">
-                    <div class="card__content">
-                        <div class="card__heading">
-                            <img src="./src/assets/icons/calendar.svg" alt="Icono de calendario">
-                            <p class="card__text">Total de citas hoy</p>
-                        </div>
-                        <span class="card__summary" id="quotesToday">0</span>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card__content">
-                        <div class="card__heading">
-                            <img src="./src/assets/icons/banknote-arrow-up.svg" alt="Icono de ingresos">
-                            <p class="card__text">Total de ingresos</p>
-                        </div>
-                        <span class="card__summary" id="totalIncome">0</span>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card__content">
-                        <div class="card__heading">
-                            <img src="./src/assets/icons/calendar-plus.svg" alt="Icono de nuevas citas">
-                            <p class="card__text">Total de citas nuevas</p>
-                        </div>
-                        <span class="card__summary" id="newQuotes">0</span>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card__content">
-                        <div class="card__heading">
-                            <img src="./src/assets/icons/book-user.svg" alt="Icono de clientes">
-                            <p class="card__text">Total de clientes</p>
-                        </div>
-                        <span class="card__summary" id="totalClients">0</span>
-                    </div>
-                </div>
+            ${statCard({icon: './src/assets/icons/calendar.svg', text: 'Total de citas hoy', value: renderValue(todayAppointments)})}
+            ${statCard({icon: './src/assets/icons/banknote-arrow-up.svg', text: 'Total de ingresos', value: `$${renderValue(totalIncomes).toLocaleString('en-US', {minimumFractionDigits: 2})}`})}
+            ${statCard({icon: './src/assets/icons/calendar-plus.svg', text: 'Total de citas nuevas', value: renderValue(newAppointments)})}
+            ${statCard({icon: './src/assets/icons/book-user.svg', text: 'Total de clientes', value: renderValue(totalClients)})}
+                
             </div>
             <div class="dashboard__information">
                 <div class="card">
@@ -69,6 +51,10 @@ export const renderDashboard = () => {
                             <img src="./src/assets/icons/book-plus.svg" alt="">
                             <p class="card__text">Nuevas citas</p>
                         </div>
+                        ${table({
+                            columns: dashboardColumns,
+                            data: citas
+                        })}
                         <div class="card__table">
                             <table class="table">
                                 <thead class="table__heading">

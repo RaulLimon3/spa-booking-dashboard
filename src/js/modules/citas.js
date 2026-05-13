@@ -1,43 +1,20 @@
+import { renderStatusAppointments, renderTotalAppointments } from "../app";
+import { renderValue, statCard } from "../components/cards";
+import { appointmenteColumns } from "../components/columns";
+import { table } from "../components/tables";
+import { citas } from "../store/store";
+
 export const renderCitas = () => {
+    const totalAppointmentes = renderTotalAppointments();
+    const statusAppointments = renderStatusAppointments();
     return `
         <div class="dashboard" id="appointments">
             <div class="dashboard__statistics">
-                <div class="card">
-                    <div class="card__content">
-                        <div class="card__heading">
-                            <img src="./src/assets/icons/book-open.svg" alt="Icono de total de citas">
-                            <p class="card__text">Total de citas</p>
-                        </div>
-                        <span class="card__summary" id="totalAppointments">0</span>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card__content">
-                        <div class="card__heading">
-                            <img src="./src/assets/icons/book-check.svg" alt="Icono de citas atendidas">
-                            <p class="card__text">Citas atendidas</p>
-                        </div>
-                        <span class="card__summary" id="attendedAppointments">0</span>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card__content">
-                        <div class="card__heading">
-                            <img src="./src/assets/icons/book-alert.svg" alt="Icono de citas pendientes">
-                            <p class="card__text">Citas pendientes</p>
-                        </div>
-                        <span class="card__summary" id="pendignAppointments">0</span>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card__content">
-                        <div class="card__heading">
-                            <img src="./src/assets/icons/book-x.svg" alt="Icono de citas canceladas">
-                            <p class="card__text">Citas canceladas</p>
-                        </div>
-                        <span class="card__summary" id="canceledAppointments">0</span>
-                    </div>
-                </div>
+            ${statCard({icon: './src/assets/icons/book-open.svg', text: 'Total de citas', value: renderValue(totalAppointmentes)})}
+            ${statCard({icon: './src/assets/icons/book-check.svg', text: 'Citas atendidas', value: renderValue(statusAppointments.attended)})}
+            ${statCard({icon: './src/assets/icons/book-alert.svg', text: 'Citas pendientes', value: renderValue(statusAppointments.pending)})}
+            ${statCard({icon: './src/assets/icons/book-x.svg', text: 'Citas canceladas', value: renderValue(statusAppointments.canceled)})}
+                
             </div>
             <div class="dashboard__information">
                 <div class="card">
@@ -69,6 +46,10 @@ export const renderCitas = () => {
                                 </div>
                             </div>
                         </div>
+                        ${table({
+                            columns: appointmenteColumns,
+                            data: citas
+                        })}
                         <div class="card__table">
                             <table class="table">
                                 <thead class="table__heading">

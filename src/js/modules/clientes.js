@@ -1,3 +1,7 @@
+import { clientColumns } from "../components/columns";
+import { table } from "../components/tables";
+import { citas } from "../store/store";
+
 export const renderClientes = () => {
     return `
         <div class="dashboard" id="clients">
@@ -13,6 +17,10 @@ export const renderClientes = () => {
                                 <input type="text" name="search" id="appointmentsSearch" class="input" placeholder="Buscar">
                             </div>
                         </div>
+                        ${table({
+                            columns: clientColumns,
+                            data: citas
+                        })}
                         <div class="card__table">
                             <table class="table">
                                 <thead class="table__heading">
