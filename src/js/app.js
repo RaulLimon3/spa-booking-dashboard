@@ -1,3 +1,4 @@
+import { toggleDropdown } from "./components/dropdown";
 import { initNavBar, toggleSidebar } from "./components/navbar";
 import { renderCitas } from "./modules/citas";
 import { renderClientes } from "./modules/clientes";
@@ -44,6 +45,8 @@ const renderStatusAppointments = () => {
 initNavBar();
 
 toggleSidebar();
+
+toggleDropdown();
 
 // Accedemos a nuestro contenedor dinamico
 const dashboardSection = document.getElementById('dashboardSection');

@@ -63,28 +63,6 @@ export const renderDashboard = () => {
                             columns: dashboardColumns,
                             data: citas
                         })}
-                        <div class="card__table">
-                            <table class="table">
-                                <thead class="table__heading">
-                                    <tr>
-                                        <th class="table__col">Cliente</th>
-                                        <th class="table__col">Servicio</th>
-                                        <th class="table__col">Precio</th>
-                                        <th class="table__col">Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="table__body" id="dashboardTableBody">
-                                    <tr class="table__row">
-                                        <td class="table__cell">Raul Limon</td>
-                                        <td class="table__cell">Facial</td>
-                                        <td class="table__cell">$100</td>
-                                        <td class="table__cell">
-                                            <span class="badge">Pendiente</span>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
                     </div>
                 </div>
             </div>
