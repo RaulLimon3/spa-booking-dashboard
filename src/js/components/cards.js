@@ -8,7 +8,7 @@ const statCard = ({ icon, text, value }) => {
                     <img src="${icon}" alt="Icono de calendario">
                     <p class="card__text">${text}</p>
                 </div>
-                <span class="card__summary">${value}</span>
+                <span class="card__summary">${renderValue(value)}</span>
             </div>
         </div>
     `;

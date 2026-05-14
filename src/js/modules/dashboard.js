@@ -1,8 +1,9 @@
 import { renderNewAppointments, renderTodayAppointments, renderTotalClients, renderTotalIncomes } from "../app";
-import { statCard, renderValue, appointmentCard } from "../components/cards";
+import { statCard, appointmentCard } from "../components/cards";
 import { dashboardColumns } from "../components/columns";
 import { table } from "../components/tables";
 import { citas } from "../store/store";
+import { currencyFormat } from "../utils/helpers";
 
 export const renderDashboard = () => {
     // Extraemos los datos
@@ -16,11 +17,10 @@ export const renderDashboard = () => {
     return `
         <div class="dashboard" id="dashboard">
             <div class="dashboard__statistics">
-            ${statCard({icon: './src/assets/icons/calendar.svg', text: 'Total de citas hoy', value: renderValue(todayAppointments)})}
-            ${statCard({icon: './src/assets/icons/banknote-arrow-up.svg', text: 'Total de ingresos', value: `$${renderValue(totalIncomes).toLocaleString('en-US', {minimumFractionDigits: 2})}`})}
-            ${statCard({icon: './src/assets/icons/calendar-plus.svg', text: 'Total de citas nuevas', value: renderValue(newAppointments)})}
-            ${statCard({icon: './src/assets/icons/book-user.svg', text: 'Total de clientes', value: renderValue(totalClients)})}
-                
+            ${statCard({icon: './src/assets/icons/calendar.svg', text: 'Total de citas hoy', value: todayAppointments})}
+            ${statCard({icon: './src/assets/icons/banknote-arrow-up.svg', text: 'Total de ingresos', value: currencyFormat(totalIncomes)})}
+            ${statCard({icon: './src/assets/icons/calendar-plus.svg', text: 'Total de citas nuevas', value: newAppointments})}
+            ${statCard({icon: './src/assets/icons/book-user.svg', text: 'Total de clientes', value: totalClients})}
             </div>
             <div class="dashboard__information">
                 <div class="card">

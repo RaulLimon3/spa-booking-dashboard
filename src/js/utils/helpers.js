@@ -6,4 +6,20 @@ const formatHour = (hour) => {
     return `${formattedHour}:${minutes} ${period}`;
 }
 
-export { formatHour };
+const statusBadge = (status) => {
+    const statusMap = {
+        atendida: 'success',
+        pendiente: 'warning',
+        cancelada: 'error'
+    };
+
+    return `
+        <span class="badge badge--${statusMap[status]}">${status}</span>
+    `;
+}
+
+const currencyFormat = (price) => {
+    return price.toLocaleString('es-MX', { style: 'currency', currency: 'MXN' });
+}
+
+export { formatHour, statusBadge, currencyFormat };

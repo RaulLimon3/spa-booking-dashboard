@@ -1,4 +1,4 @@
-import { formatHour } from "../utils/helpers";
+import { currencyFormat, formatHour, statusBadge } from "../utils/helpers";
 
 const dashboardColumns = [
     {
@@ -13,13 +13,13 @@ const dashboardColumns = [
     {
         header: 'Precio',
         accessor: 'precio',
-        render: (_, item) => `$${item.servicio.precio.toLocaleString('en-US', {minimumFractionDigits: 2})}`
+        render: (_, item) => currencyFormat(item.servicio.precio)
     },
     {
         header: 'Status',
         accessor: 'estado',
         render: (value) => `
-            <span class="badge">${value}</span>
+            ${statusBadge(value)}
         `
     }
 ];
@@ -45,7 +45,8 @@ const appointmenteColumns = [
     },
     {
         header: 'Status',
-        accessor: 'estado'
+        accessor: 'estado',
+        render: (value) => `${statusBadge(value)}`
     },
     {
         header: 'Acciones',
