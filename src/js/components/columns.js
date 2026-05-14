@@ -1,3 +1,5 @@
+import { formatHour } from "../utils/helpers";
+
 const dashboardColumns = [
     {
         header: 'Cliente',
@@ -38,7 +40,8 @@ const appointmenteColumns = [
     },
     {
         header: 'Hora',
-        accessor: 'hora'
+        accessor: 'hora',
+        render: (_, item) => formatHour(item.hora)
     },
     {
         header: 'Status',

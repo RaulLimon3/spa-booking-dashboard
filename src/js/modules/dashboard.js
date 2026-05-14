@@ -1,5 +1,5 @@
 import { renderNewAppointments, renderTodayAppointments, renderTotalClients, renderTotalIncomes } from "../app";
-import { statCard, renderValue } from "../components/cards";
+import { statCard, renderValue, appointmentCard } from "../components/cards";
 import { dashboardColumns } from "../components/columns";
 import { table } from "../components/tables";
 import { citas } from "../store/store";
@@ -10,6 +10,7 @@ export const renderDashboard = () => {
     const totalIncomes = renderTotalIncomes();
     const newAppointments = renderNewAppointments();
     const totalClients = renderTotalClients();
+    const nextAppointment = citas[0];
 
     // Mostramos nuestro Dashboard
     return `
@@ -28,19 +29,26 @@ export const renderDashboard = () => {
                             <img src="./src/assets/icons/calendar-clock.svg" alt="Icono de citas proximas">
                             <p class="card__text">Proxima cita</p>
                         </div>
-                        <div class="card__information">
-                            <div class="card__data">
-                                <div class="card__username">
-                                    <p>Raul Limon</p>
+                        <div class="card__appointment">
+                        ${appointmentCard({
+                            name: nextAppointment.cliente,
+                            date: nextAppointment.fecha,
+                            hour: nextAppointment.hora
+                        })}
+                            <div class="card__information">
+                                <div class="card__data">
+                                    <div class="card__username">
+                                        <p>Raul Limon</p>
+                                    </div>
+                                    <div class="card__date-information">
+                                        <span class="card__date">06/05/2026</span>
+                                        <span class="card__hour">14:26p.m</span>
+                                    </div>
                                 </div>
-                                <div class="card__date-information">
-                                    <span class="card__date">06/05/2026</span>
-                                    <span class="card__hour">14:26p.m</span>
+                                <div class="card__buttons">
+                                    <button type="button" class="btn btn__danger">Cancelar</button>
+                                    <button type="button" class="btn btn__success">Completado</button>
                                 </div>
-                            </div>
-                            <div class="card__buttons">
-                                <button type="button" class="btn btn__danger">Cancelar</button>
-                                <button type="button" class="btn btn__success">Completado</button>
                             </div>
                         </div>
                     </div>

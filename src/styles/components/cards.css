@@ -28,10 +28,19 @@
     font-size: var(--fz-3xl);
 }
 
+.card__appointment {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    max-height: 130px;
+    overflow-y: auto;
+}
+
 .card__information {
     display: flex;
     flex-direction: column;
     gap: var(--space-2);
+    margin: var(--space-2) 0;
 }
 
 .card__data {
