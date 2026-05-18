@@ -1,12 +1,12 @@
-import { renderStatusAppointments, renderTotalAppointments } from "../app";
 import { renderValue, statCard } from "../components/cards";
 import { appointmenteColumns } from "../components/columns";
 import { table } from "../components/tables";
+import { getStatusAppointments, getTotalAppointments } from "../service/appointments";
 import { citas } from "../store/store";
 
 export const renderCitas = () => {
-    const totalAppointmentes = renderTotalAppointments();
-    const statusAppointments = renderStatusAppointments();
+    const totalAppointmentes = getTotalAppointments(citas);
+    const statusAppointments = getStatusAppointments(citas);
     return `
         <div class="dashboard" id="appointments">
             <div class="dashboard__statistics">
@@ -45,11 +45,12 @@ export const renderCitas = () => {
                                 </div>
                             </div>
                         </div>
-                        ${table({
-                            columns: appointmenteColumns,
-                            data: citas
-                        })}
-                        
+                        <div id="appointmentsTableContainer">
+                            ${table({
+                                columns: appointmenteColumns,
+                                data: citas
+                            })}
+                        </div>
                     </div>
                 </div>
             </div>

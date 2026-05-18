@@ -1,16 +1,16 @@
-import { renderNewAppointments, renderTodayAppointments, renderTotalClients, renderTotalIncomes } from "../app";
 import { statCard, appointmentCard } from "../components/cards";
 import { dashboardColumns } from "../components/columns";
 import { table } from "../components/tables";
+import { getNewAppointments, getTodayAppointments, getTotalClients, getTotalIncomes } from "../service/appointments";
 import { citas } from "../store/store";
 import { currencyFormat } from "../utils/helpers";
 
 export const renderDashboard = () => {
     // Extraemos los datos
-    const todayAppointments = renderTodayAppointments();
-    const totalIncomes = renderTotalIncomes();
-    const newAppointments = renderNewAppointments();
-    const totalClients = renderTotalClients();
+    const todayAppointments = getTodayAppointments(citas);
+    const totalIncomes = getTotalIncomes(citas);
+    const newAppointments = getNewAppointments(citas);
+    const totalClients = getTotalClients(citas);
     const nextAppointment = citas[0];
 
     // Mostramos nuestro Dashboard

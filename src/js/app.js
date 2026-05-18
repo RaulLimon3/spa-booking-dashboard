@@ -6,41 +6,6 @@ import { renderDashboard } from "./modules/dashboard";
 import { renderServicios } from "./modules/servicios";
 import { citas } from "./store/store";
 
-const renderTotalClients = () => {
-    return citas.length;
-}
-
-const renderTotalIncomes = () => {
-    return citas.reduce((acc, cita) => acc + cita.servicio.precio, 0);
-}
-
-const renderNewAppointments = () => {
-    return citas.filter(cita => cita.estado === 'pendiente').length;
-}
-
-const renderTodayAppointments = () => {
-    const today = new Date().toISOString().split('T')[0];
-
-    return citas.reduce((acc, cita) => {
-        return cita.fecha === today
-            ? acc + 1
-            : acc;
-    }, 0);
-};
-
-const renderTotalAppointments = () => {
-    return renderTotalClients();
-};
-
-const renderStatusAppointments = () => {
-    return citas.reduce((acc, cita) => {
-        if (cita.estado === 'atendida') acc.attended++;
-        else if (cita.estado === 'pendiente') acc.pending++;
-        else acc.canceled++;
-        return acc;
-    }, {attended: 0, pending: 0, canceled: 0});
-};
-
 // Cargamos el contenido 
 initNavBar();
 
@@ -74,6 +39,3 @@ currentSection.forEach(btn => {
         dashboardSection.innerHTML = routes[section]();
     });
 });
-
-export {renderTotalClients, renderTodayAppointments, renderTotalIncomes, 
-    renderNewAppointments, renderTotalAppointments, renderStatusAppointments }
