@@ -11,7 +11,7 @@ export const citas = [
         },
         fecha: "2026-06-10",
         hora: "10:00",
-        estado: "atendida",
+        estado: "atendido",
     },
     {
         id: 2,
@@ -37,6 +37,6 @@ export const citas = [
         },
         fecha: "2026-06-11",
         hora: "12:00",
-        estado: "cancelada",
+        estado: "cancelado",
     },
 ];

@@ -1,10 +1,61 @@
 import { renderValue, statCard } from "../components/cards";
 import { appointmenteColumns } from "../components/columns";
 import { table } from "../components/tables";
-import { getStatusAppointments, getTotalAppointments } from "../service/appointments";
+import { filterAppointments, getStatusAppointments, getTotalAppointments } from "../service/appointments";
 import { citas } from "../store/store";
 
-export const renderCitas = () => {
+// Establecemos los filtros por defecto
+const filters = {
+    query: '',
+    date: '',
+    status: '',
+    service: ''
+};
+
+// Creamos la función para renderizar la tabla con filtros
+const renderAppointmentsTable = () => {
+    const filterdeAppointments = filterAppointments(citas, filters);
+
+    const tableContainer = document.getElementById('appointmentsTableContainer');
+
+    if (!tableContainer) return;
+
+    tableContainer.innerHTML = table({
+        columns: appointmenteColumns,
+        data: filterdeAppointments
+    });
+}
+
+const initAppointments = () => {
+    const searchInput = document.getElementById('appointmentsSearch');
+    const dateInput = document.getElementById('appointmentsDate');
+    const statusInput = document.getElementById('appointmentStatus');
+    const serviceInput = document.getElementById('service');
+
+    if (!searchInput || !dateInput || !statusInput || !serviceInput) return;
+
+    searchInput.addEventListener('input', (e) =>{
+        filters.query = e.target.value;
+        renderAppointmentsTable();
+    });
+
+    dateInput.addEventListener('change', (e) => {
+        filters.date = e.target.value;
+        renderAppointmentsTable();
+    });
+
+    statusInput.addEventListener('change', (e) => {
+        filters.status = e.target.value;
+        renderAppointmentsTable();
+    });
+
+    serviceInput.addEventListener('change', (e) => {
+        filters.service = e.target.value;
+        renderAppointmentsTable();
+    });
+}
+
+const renderCitas = () => {
     const totalAppointmentes = getTotalAppointments(citas);
     const statusAppointments = getStatusAppointments(citas);
     return `
@@ -57,3 +108,5 @@ export const renderCitas = () => {
         </div>
     `;
 };
+
+export { initAppointments, renderCitas };

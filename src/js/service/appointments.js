@@ -12,7 +12,7 @@ const getTotalClients = (appointments) => {
 
 // Obtenemos el de ingresos en base a las citas atendidas
 const getTotalIncomes = (appointments) => {
-    return appointments.filter(cita => cita.estado === 'atendida').reduce((acc, cita) => acc + cita.servicio.precio, 0);
+    return appointments.filter(cita => cita.estado === 'atendido').reduce((acc, cita) => acc + cita.servicio.precio, 0);
 }
 
 // Obtenemos las nuevas citas registradas (citas pendientes)
@@ -41,7 +41,7 @@ const getTotalAppointments = (appointments) => {
 // Obtener el total de citas en base a su status
 const getStatusAppointments = (appointments) => {
     return appointments.reduce((acc, cita) => {
-        if (cita.estado === 'atendida') acc.attended++;
+        if (cita.estado === 'atendido') acc.attended++;
         else if (cita.estado === 'pendiente') acc.pending++;
         else acc.canceled++;
         return acc;

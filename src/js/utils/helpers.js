@@ -8,9 +8,9 @@ const formatHour = (hour) => {
 
 const statusBadge = (status) => {
     const statusMap = {
-        atendida: 'success',
+        atendido: 'success',
         pendiente: 'warning',
-        cancelada: 'error'
+        cancelado: 'error'
     };
 
     return `

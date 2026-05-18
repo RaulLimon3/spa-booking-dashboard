@@ -1,6 +1,6 @@
 import { toggleDropdown } from "./components/dropdown";
 import { initNavBar, toggleSidebar } from "./components/navbar";
-import { renderCitas } from "./modules/citas";
+import { initAppointments, renderCitas } from "./modules/citas";
 import { renderClientes } from "./modules/clientes";
 import { renderDashboard } from "./modules/dashboard";
 import { renderServicios } from "./modules/servicios";
@@ -18,14 +18,23 @@ const dashboardSection = document.getElementById('dashboardSection');
 
 // Declaramos nuestos paneles existente
 const routes = {
-    Dashboard: renderDashboard,
-    Citas: renderCitas,
-    Clientes: renderClientes,
-    Servicios: renderServicios
-}
+    Dashboard: { 
+        render: renderDashboard 
+    },
+    Citas: {
+        render: renderCitas,
+        init: initAppointments
+    },
+    Clientes: {
+        render: renderClientes
+    },
+    Servicios: {
+        render: renderServicios
+    }
+};
 
 // Mostramos el panel de control inicial
-dashboardSection.innerHTML = routes.Dashboard();
+dashboardSection.innerHTML = routes.Dashboard.render();
 
 // Accedemos a la secciones existentes
 const currentSection = document.querySelectorAll('[data-section]');
@@ -35,7 +44,12 @@ currentSection.forEach(btn => {
     btn.addEventListener('click', () => {
         // Extraemos el valor de la seccion
         const section = btn.dataset.section;
+        const currentRoute = routes[section];
         // Mostramos el dashboard correspondiente
-        dashboardSection.innerHTML = routes[section]();
+        dashboardSection.innerHTML = currentRoute.render();
+
+        if (currentRoute.init) {
+            currentRoute.init();
+        }
     });
 });
