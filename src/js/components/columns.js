@@ -1,4 +1,5 @@
 import { currencyFormat, formatHour, statusBadge } from "../utils/helpers";
+import { dropdown } from "./dropdown";
 
 const dashboardColumns = [
     {
@@ -51,15 +52,7 @@ const appointmenteColumns = [
     {
         header: 'Acciones',
         accessor: 'id',
-        render: (value) => `
-        <div class="dropdown">
-            <button type="button" class="dropdown__toggle">⋯</button>
-            <div class="dropdown__options dropdown--hidden">
-                <button type="button" class="dropdown__item dropdown__item--edit" data-edit="${value}">Editar</button>
-                <button type="button" class="dropdown__item dropdown__item--remove" data-remove="${value}">Eliminar</button>
-            </div>
-        </div>
-        `
+        render: (value) => dropdown(value)
     }
 ];
 

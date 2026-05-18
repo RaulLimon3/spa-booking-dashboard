@@ -1,4 +1,16 @@
-export const toggleDropdown = () => {
+const dropdown = (id) => {
+    return `
+        <div class="dropdown">
+            <button type="button" class="dropdown__toggle">⋯</button>
+            <div class="dropdown__options dropdown--hidden">
+                <button type="button" class="dropdown__item dropdown__item--edit" data-edit="${id}">Editar</button>
+                <button type="button" class="dropdown__item dropdown__item--remove" data-remove="${id}">Eliminar</button>
+            </div>
+        </div>
+    `;
+};
+
+const toggleDropdown = () => {
     document.addEventListener('click', (e) => {
         // Establecemos el boton a cliquear
         const dropdownBtn = e.target.closest('.dropdown__toggle');
@@ -25,3 +37,5 @@ const closeAllDropdowns = () => {
         drop.classList.add('dropdown--hidden');
     });
 };
+
+export { dropdown, toggleDropdown }
