@@ -1,7 +1,7 @@
 import { statCard, appointmentCard } from "../components/cards";
 import { dashboardColumns } from "../components/columns";
 import { table } from "../components/tables";
-import { getNewAppointments, getTodayAppointments, getTotalClients, getTotalIncomes } from "../service/appointments";
+import { getNewAppointments, getNextUpComingAppointments, getTodayAppointments, getTotalClients, getTotalIncomes } from "../service/appointments";
 import { citas } from "../store/store";
 import { currencyFormat } from "../utils/helpers";
 
@@ -11,7 +11,7 @@ export const renderDashboard = () => {
     const totalIncomes = getTotalIncomes(citas);
     const newAppointments = getNewAppointments(citas);
     const totalClients = getTotalClients(citas);
-    const nextAppointment = citas[0];
+    const upComingAppointments = getNextUpComingAppointments(citas);
 
     // Mostramos nuestro Dashboard
     return `
@@ -30,11 +30,13 @@ export const renderDashboard = () => {
                             <p class="card__text">Proxima cita</p>
                         </div>
                         <div class="card__appointment">
-                        ${appointmentCard({
-                            name: nextAppointment.cliente,
-                            date: nextAppointment.fecha,
-                            hour: nextAppointment.hora
-                        })}
+                            ${upComingAppointments.map(appointment => 
+                                appointmentCard({
+                                    name: appointment.cliente,
+                                    date: appointment.fecha,
+                                    hour: appointment.hora
+                                })
+                            ).join('')}
                             <div class="card__information">
                                 <div class="card__data">
                                     <div class="card__username">

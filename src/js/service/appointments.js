@@ -22,13 +22,29 @@ const getNewAppointments = (appointments) => {
 
 // Obtenemos el total de citas del dia
 const getTodayAppointments = (appointments) => {
-    const today = new Date().toISOString().split('T')[0];
+    const today = getCurrentDay();
 
     return appointments.reduce((acc, cita) => {
         return cita.fecha === today
             ? acc + 1
             : acc;
     }, 0);
+};
+
+const getCurrentDay = () => {
+    return new Date().toISOString().split('T')[0];
+}
+
+const getNextUpComingAppointments = (appointments) => {
+    // Establecemos el dia de hoy
+    const currentDay = getCurrentDay();
+
+    // Obtnenemos el total de citas
+    const totalAppointments = getTodayAppointments(appointments);
+
+    // Devolvemos las sitas 
+    return appointments.filter(appointment => appointment.fecha === currentDay)
+    .sort((a, b) => a.hora.localeCompare(b.hora)).slice(0, totalAppointments);
 };
 
 /* 📌 Citas */
@@ -88,4 +104,4 @@ const filterByService = (appointments, service) => {
 
 export { getTotalClients, getTotalIncomes, getNewAppointments, 
     getTodayAppointments, getStatusAppointments, getTotalAppointments,
-    filterAppointments, searchAppointments };
+    filterAppointments, searchAppointments, getNextUpComingAppointments };
