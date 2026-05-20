@@ -40,4 +40,16 @@ const appointmentCard = ({name, date, hour}) => {
     `;
 }
 
-export { statCard, renderValue, appointmentCard };
+const emptyCard = () => {
+    return `
+        <div class="card__information card__information--empty">
+            <div class="card__data card__data--empty">
+                <div class="card__message">
+                    <p>No hay citas hoy</p>
+                </div>
+            </div>
+        </div>
+    `;
+};
+
+export { statCard, renderValue, appointmentCard, emptyCard };

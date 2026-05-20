@@ -20,7 +20,7 @@ export const table = ({ columns, data, emptyMessage = 'Sin datos disponibles' })
 const emptyTable = (columns, message) => {
     return `
         <tr>
-            <td class="table__cell" colspan="${columns.length}">
+            <td class="table__cell table__cell--empty" colspan="${columns.length}">
                 ${message}
             </td>
         </tr>

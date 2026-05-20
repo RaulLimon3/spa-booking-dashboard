@@ -27,3 +27,7 @@
 .table__cell {
     padding: var(--space-2);
 }
+
+.table__cell--empty {
+    text-align: center;
+}

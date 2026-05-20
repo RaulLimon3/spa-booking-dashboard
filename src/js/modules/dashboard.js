@@ -1,4 +1,4 @@
-import { statCard, appointmentCard } from "../components/cards";
+import { statCard, appointmentCard, emptyCard } from "../components/cards";
 import { dashboardColumns } from "../components/columns";
 import { table } from "../components/tables";
 import { getNewAppointments, getNextUpComingAppointments, getTodayAppointments, getTotalClients, getTotalIncomes } from "../service/appointments";
@@ -30,13 +30,10 @@ export const renderDashboard = () => {
                             <p class="card__text">Proxima cita</p>
                         </div>
                         <div class="card__appointment">
-                            ${upComingAppointments.map(appointment => 
-                                appointmentCard({
-                                    name: appointment.cliente,
-                                    date: appointment.fecha,
-                                    hour: appointment.hora
-                                })
-                            ).join('')}
+                            ${upComingAppointments.length ? 
+                                renderUpcomingAppointments(upComingAppointments)
+                                : emptyCard()
+                            }
                             <div class="card__information">
                                 <div class="card__data">
                                     <div class="card__username">
@@ -58,7 +55,7 @@ export const renderDashboard = () => {
                 <div class="card">
                     <div class="card__content">
                         <div class="card__heading">
-                            <img src="./src/assets/icons/book-plus.svg" alt="">
+                            <img src="./src/assets/icons/book-plus.svg" alt="Icono de nuevas citas">
                             <p class="card__text">Nuevas citas</p>
                         </div>
                         ${table({
@@ -70,4 +67,14 @@ export const renderDashboard = () => {
             </div>
         </div>
     `;
+};
+
+const renderUpcomingAppointments = (appointments) => {
+    return appointments.map(appointment => 
+        appointmentCard({
+            name: appointment.cliente,
+            date: appointment.fecha,
+            hour: appointment.hora
+        })
+    ).join('');
 };
