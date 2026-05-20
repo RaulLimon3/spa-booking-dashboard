@@ -1,8 +1,32 @@
-import { clientColumns } from "../components/columns";
+import {  clientColumns } from "../components/columns";
 import { table } from "../components/tables";
+import { searchAppointments } from "../service/appointments";
 import { citas } from "../store/store";
 
-export const renderClientes = () => {
+let defaultQuery = '';
+
+const renderClientsTable = () => {
+    const searchClient = searchAppointments(citas, defaultQuery);
+    const clientTable = document.getElementById('clientsTable');
+    if (!clientTable) return;
+    clientTable.innerHTML = table({
+        columns: clientColumns,
+        data: searchClient
+    });
+};
+
+const initClients = () => {
+    const clientSearch = document.getElementById('clientSearch');
+
+    if (!clientSearch) return;
+
+    clientSearch.addEventListener('input', (e) => {
+        defaultQuery = e.target.value;
+        renderClientsTable();
+    });
+};
+
+const renderClientes = () => {
     return `
         <div class="dashboard" id="clients">
             <div class="dashboard__information">
@@ -14,13 +38,15 @@ export const renderClientes = () => {
                         </div>
                         <div class="card__panel-control">
                             <div class="searchbar">
-                                <input type="text" name="search" id="appointmentsSearch" class="input" placeholder="Buscar">
+                                <input type="text" name="search" id="clientSearch" class="input" placeholder="Buscar">
                             </div>
                         </div>
-                        ${table({
-                            columns: clientColumns,
-                            data: citas
-                        })}
+                        <div id="clientsTable">
+                            ${table({
+                                columns: clientColumns,
+                                data: citas
+                            })}
+                        </div>
                         <div class="card__table">
                             <table class="table">
                                 <thead class="table__heading">
@@ -47,3 +73,5 @@ export const renderClientes = () => {
         </div>
     `;
 };
+
+export { initClients, renderClientes }

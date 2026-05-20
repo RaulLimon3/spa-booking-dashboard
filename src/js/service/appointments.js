@@ -88,4 +88,4 @@ const filterByService = (appointments, service) => {
 
 export { getTotalClients, getTotalIncomes, getNewAppointments, 
     getTodayAppointments, getStatusAppointments, getTotalAppointments,
-    filterAppointments };
+    filterAppointments, searchAppointments };

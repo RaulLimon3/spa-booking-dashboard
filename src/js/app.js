@@ -1,7 +1,7 @@
 import { toggleDropdown } from "./components/dropdown";
 import { initNavBar, toggleSidebar } from "./components/navbar";
 import { initAppointments, renderCitas } from "./modules/citas";
-import { renderClientes } from "./modules/clientes";
+import { initClients, renderClientes } from "./modules/clientes";
 import { renderDashboard } from "./modules/dashboard";
 import { renderServicios } from "./modules/servicios";
 import { citas } from "./store/store";
@@ -26,7 +26,8 @@ const routes = {
         init: initAppointments
     },
     Clientes: {
-        render: renderClientes
+        render: renderClientes,
+        init: initClients
     },
     Servicios: {
         render: renderServicios
