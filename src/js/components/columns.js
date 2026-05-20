@@ -67,4 +67,22 @@ const clientColumns = [
     }
 ];
 
-export { dashboardColumns, appointmenteColumns, clientColumns };
+const servicesColumns = [
+    {
+        header: 'Nombre',
+        accessor: 'nombre',
+        render: (_, item) => item.nombre
+    },
+    {
+        header: 'Duración',
+        accessor: 'duracion',
+        render: (_, item) => `${item.duracion} min`
+    },
+    {
+        header: 'Precio',
+        accessor: 'precio',
+        render: (_, item) => currencyFormat(item.precio)
+    }
+]
+
+export { dashboardColumns, appointmenteColumns, clientColumns, servicesColumns };

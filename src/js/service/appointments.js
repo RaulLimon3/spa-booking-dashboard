@@ -102,6 +102,18 @@ const filterByService = (appointments, service) => {
     return appointments.filter(cita => cita.servicio.nombre.toLowerCase() === service.toLowerCase())
 };
 
+/* 📌 Servicios */
+
+const getUniqueServices = (appointments) => {
+    return [...new Map(
+        appointments.map(appointment => [
+            appointment.servicio.nombre,
+            appointment.servicio
+        ])
+    ).values()];
+};
+
 export { getTotalClients, getTotalIncomes, getNewAppointments, 
     getTodayAppointments, getStatusAppointments, getTotalAppointments,
-    filterAppointments, searchAppointments, getNextUpComingAppointments };
+    filterAppointments, searchAppointments, getNextUpComingAppointments,
+    getUniqueServices };
