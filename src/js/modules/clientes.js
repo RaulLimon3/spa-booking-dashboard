@@ -47,26 +47,6 @@ const renderClientes = () => {
                                 data: citas
                             })}
                         </div>
-                        <div class="card__table">
-                            <table class="table">
-                                <thead class="table__heading">
-                                    <tr>
-                                        <th class="table__col">Nombre</th>
-                                        <th class="table__col">Telefono</th>
-                                        <th class="table__col">N. de citas</th>
-                                        <th class="table__col">Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="table__body" id="clientsTableBody">
-                                    <tr class="table__row">
-                                        <td class="table__cell">Raul Limon</td>
-                                        <td class="table__cell">1234567890</td>
-                                        <td class="table__cell">5</td>
-                                        <td class="table__cell">...</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
                     </div>
                 </div>
             </div>
