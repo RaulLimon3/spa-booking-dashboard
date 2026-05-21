@@ -14,8 +14,8 @@
       <div class="aside__logo">
         <div class="logo">
           <button type="button" class="icon__btn icon__btn--open">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2"
-              stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-leaf-icon lucide-leaf icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" class="lucide lucide-leaf-icon lucide-leaf icon">
               <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" />
               <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" />
             </svg>
@@ -112,6 +112,45 @@
         </section>
       </div>
     </main>
+    <div class="modal" id="modal">
+      <div class="modal__content">
+        <div class="modal__form-container">
+          <div class="modal__heading">
+            <h2 class="modal__title" id="modalTittle">Crear nueva cita</h2>
+            <button type="button" id="closeModal">
+              <img src="./src/assets/icons/x.svg" alt="Icono de cerrar" class="icon">
+            </button>
+          </div>
+          <form class="form__appointment" id="appointmentForm">
+            <div class="form__group">
+              <label for="customerName">Nombre del cliente</label>
+              <input type="text" name="customerName" id="customerName" class="input">
+            </div>
+            <div class="form__group">
+              <label for="customerPhone">Número telefonico</label>
+              <input type="tel" name="customerPhone" id="customerPhone" class="input">
+            </div>
+            <div class="form__group">
+              <label for="serviceInput">Servicios</label>
+              <select name="serviceInput" class="input" id="serviceInput">
+                <option value="" disabled selected hidden>Servicios</option>
+                <option value="facial">Facial</option>
+                <option value="masaje">Masaje</option>
+              </select>
+            </div>
+            <div class="form__group">
+              <label for="appointmentDate">Fecha de la cita</label>
+              <input type="date" name="appointmentDate" id="appointmentDate" class="input">
+            </div>
+            <div class="form__group">
+              <label for="appointmentHour">Hora de la cita</label>
+              <input type="time" name="appointmentHour" id="appointmentHour" class="input">
+            </div>
+            <button type="submit" class="btn btn__success" id="modalBtn">Guardar cita</button>
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
   <script type="module" src="/src/main.js"></script>
 </body>
