@@ -1,5 +1,5 @@
 import { toggleDropdown } from "./components/dropdown";
-import { initModal } from "./components/modals";
+import { initModal } from "./modules/modals";
 import { initNavBar, toggleSidebar } from "./components/navbar";
 import { initAppointments, renderCitas } from "./modules/citas";
 import { initClients, renderClientes } from "./modules/clientes";
