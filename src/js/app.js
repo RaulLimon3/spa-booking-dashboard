@@ -1,4 +1,5 @@
 import { toggleDropdown } from "./components/dropdown";
+import { initModal } from "./components/modals";
 import { initNavBar, toggleSidebar } from "./components/navbar";
 import { initAppointments, renderCitas } from "./modules/citas";
 import { initClients, renderClientes } from "./modules/clientes";
@@ -12,6 +13,8 @@ initNavBar();
 toggleSidebar();
 
 toggleDropdown();
+
+initModal();
 
 // Accedemos a nuestro contenedor dinamico
 const dashboardSection = document.getElementById('dashboardSection');
