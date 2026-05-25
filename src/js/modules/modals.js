@@ -1,3 +1,4 @@
+import { initForm, resetFormState } from "../components/form";
 import { appointmentModal } from "../components/modals/appointmentForm";
 
 const modal = document.getElementById('modal');
@@ -12,6 +13,7 @@ const renderModalContent = (content) => {
 const initModal = () => {
     // Renderizamos nuestro contenido
     renderModalContent(appointmentModal());
+    initForm();
     // Acceder al boton para abrir el modal
     const openModalBtn = document.getElementById('btnAdd');
 
@@ -32,7 +34,8 @@ const openModal = () => {
 };
 
 const closeModal = () => {
+    resetFormState();
     modal.classList.remove('modal--active');
 };
 
-export { initModal, renderModalContent };
+export { initModal, renderModalContent, closeModal };
