@@ -12,12 +12,12 @@ export const appointmentModal = () => {
             <div class="form__group">
                 <label for="customerName">Nombre del cliente</label>
                 <input type="text" name="customerName" id="customerName" class="input">
-                <span class="form__group-error-message">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</span>
+                <span class="form__group-error-message" id="customerNameError">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</span>
             </div>
             <div class="form__group">
                 <label for="customerPhone">Número telefonico</label>
                 <input type="tel" name="customerPhone" id="customerPhone" class="input">
-                <span class="form__group-error-message">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</span>
+                <span class="form__group-error-message" id="customerPhoneError">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</span>
             </div>
             <div class="form__group">
                 <label for="serviceInput">Servicios</label>
@@ -26,17 +26,17 @@ export const appointmentModal = () => {
                     <option value="facial">Facial</option>
                     <option value="masaje">Masaje</option>
                 </select>
-                <span class="form__group-error-message">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</span>
+                <span class="form__group-error-message" id="serviceError">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</span>
             </div>
             <div class="form__group">
                 <label for="appointmentDate">Fecha de la cita</label>
                 <input type="date" name="appointmentDate" id="appointmentDate" class="input">
-                <span class="form__group-error-message">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</span>
+                <span class="form__group-error-message" id="appointmentDateError">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</span>
             </div>
             <div class="form__group">
                 <label for="appointmentHour">Hora de la cita</label>
-                <input type="time" name="appointmentHour" id="appointmentHour" class="input" min="09:00" max="18:00">
-                <span class="form__group-error-message">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</span>
+                <input type="time" name="appointmentHour" id="appointmentHour" class="input">
+                <span class="form__group-error-message" id="appointmentHourError">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</span>
             </div>
             <button type="submit" class="btn btn__success" id="modalBtn">Guardar cita</button>
         </form>

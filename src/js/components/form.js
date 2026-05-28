@@ -13,17 +13,38 @@ const initForm = () => {
         const data = getFormData(appointmentForm);
 
         // Validamos que los campos no esten vacios
-        const hasEmptyFields = Object.values(data).some(value => !value);
+        const hasEmptyFields = Object.values(data).every(value => !value);
 
         if (hasEmptyFields) {
             showError(errorFormMessage, 'Por favor completa todos los campos', inputs);
             return;
         }
-        
+
+        clearError(errorFormMessage, inputs);
+
+        // Validamos cada campo de manera individual
+        const customerNameError = document.getElementById('customerNameError');
+        const phoneNumberError = document.getElementById('customerPhoneError');
+        const serviceError = document.getElementById('serviceError');
+        const dateError = document.getElementById('appointmentDateError');
+        const hourError = document.getElementById('appointmentHourError');
+
+        const customerValidation = validateCustomer(data.customerName);
+        const phoneValidation = validatePhone(data.customerPhone);
+        const serviceValidation = validateService(data.service);
+        const dateValidation = validateDate(data.date);
+        const hourValidation = validateHour(data.hour);
+
+        const hasCustomerError = validateField(appointmentForm.customerName, customerNameError, customerValidation);
+        const hasPhoneError = validateField(appointmentForm.customerPhone, phoneNumberError, phoneValidation);
+        const hasServiceError = validateField(appointmentForm.serviceInput, serviceError, serviceValidation);
+        const hasDateError = validateField(appointmentForm.appointmentDate, dateError, dateValidation);
+        const hasHourError = validateField(appointmentForm.appointmentHour, hourError, hourValidation);
+
+        if (hasCustomerError || hasPhoneError || hasServiceError || hasDateError || hasHourError) return;
+
         // Limpiamos le formulario
         appointmentForm.reset();
-        
-        clearError(errorFormMessage, inputs);
 
         // Cerramos el modal
         closeModal();
@@ -66,5 +87,79 @@ const resetFormState = () => {
     clearError(errorFormMessage, inputs);
 }
 
+const validateField = (input, errorElement, validation) => {
+    if (validation) {
+        showInputError(input, errorElement, validation);
+        return true;
+    }
+
+    clearInputError(input, errorElement);
+
+    return false;
+};
+
+const showInputError = (input, element, message) => {
+    input.classList.add('input__error');
+    element.textContent = message;
+    element.style.display = 'block';
+};
+
+const clearInputError = (input, element) => {
+    input.classList.remove('input__error');
+    element.textContent = '';
+    element.style.display = 'none';
+};
+
+const validateCustomer = (value) => {
+    value = value.trim().replace(/\s+/g, ' ');
+
+    if (value.length < 3) {
+        return 'El nombre debe tener al menos 3 caracteres.'
+    }
+
+    const regexName = /^[a-zA-ZÀ-ÿ\u00f1\u00d1\s]+$/;
+    if (!regexName.test(value)) {
+        return 'El nombre solo debe contener letras y espacios.'
+    }
+
+    return null;
+};
+
+const validatePhone = (value) => {
+    const regexPhoneNumber = /^[0-9]{10}$/;
+
+    if (!regexPhoneNumber.test(value)) {
+        return 'Número de telefono no valido';
+    }
+
+    return null;
+}
+
+const validateService = (value) => {
+    if (value === '') {
+        return 'Por favor, selecciona una opción valida';
+    }
+
+    return null;
+};
+
+const validateDate = (value) => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const selectedDate = new Date(value);
+
+    if (selectedDate < today) {
+        return 'No puedes seleccionar una fecha pasada';
+    }
+
+    return null;
+};
+
+const validateHour = (value) => {
+    if (value < '09:00' || value > '18:00') {
+        return 'Horario fuera de servicio';
+    }
+    return null;
+};
 
 export { initForm, resetFormState }
