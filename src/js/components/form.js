@@ -83,8 +83,10 @@ const resetFormState = () => {
     const appointmentForm = document.getElementById('appointmentForm');
     const errorFormMessage = document.getElementById('formError');
     const inputs = appointmentForm.querySelectorAll('.input');
+    const inputErrors = appointmentForm.querySelectorAll('.form__group-error-message');
     appointmentForm.reset();
     clearError(errorFormMessage, inputs);
+    cleanInputsError(inputErrors);
 }
 
 const validateField = (input, errorElement, validation) => {
@@ -108,6 +110,13 @@ const clearInputError = (input, element) => {
     input.classList.remove('input__error');
     element.textContent = '';
     element.style.display = 'none';
+};
+
+const cleanInputsError = (elements) => {
+    elements.forEach(element => {
+        element.textContent = ''
+        element.style.display = 'none';
+    });
 };
 
 const validateCustomer = (value) => {
