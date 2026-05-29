@@ -1,4 +1,7 @@
 import { closeModal } from "../modules/modals";
+import { getAppointments, saveAppointments } from "../service/storage";
+import { generateAppointmentId } from "../utils/generateId";
+import { services } from "../utils/services";
 
 const initForm = () => {
     // Accedemos a nuestros elementos de nuestro formulario
@@ -42,6 +45,27 @@ const initForm = () => {
         const hasHourError = validateField(appointmentForm.appointmentHour, hourError, hourValidation);
 
         if (hasCustomerError || hasPhoneError || hasServiceError || hasDateError || hasHourError) return;
+
+        // Guardamos los datos en localStorage
+        const appointments = getAppointments();
+
+        const selectedService = services[data.service];
+
+        const newAppointment = {
+            id: generateAppointmentId(),
+            cliente: data.customerName,
+            telefono: data.customerPhone,
+            servicio: selectedService,
+            fecha: data.date,
+            hora: data.hour,
+            status: 'pendiente'
+        };
+
+        console.log(newAppointment);
+
+        appointments.unshift(newAppointment);
+
+        saveAppointments(appointments);
 
         // Limpiamos le formulario
         appointmentForm.reset();
