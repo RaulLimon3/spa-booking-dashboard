@@ -6,6 +6,7 @@ import { filterAppointments, getAppointmentById, getStatusAppointments, getTotal
 import { citas } from "../store/store";
 import { openEditModal } from "./modals";
 
+let currentAppointments = [];
 // Establecemos los filtros por defecto
 const filters = {
     query: '',
@@ -16,7 +17,7 @@ const filters = {
 
 // Creamos la función para renderizar la tabla con filtros
 const renderAppointmentsTable = () => {
-    const filterdeAppointments = filterAppointments(citas, filters);
+    const filterdeAppointments = filterAppointments(currentAppointments, filters);
 
     const tableContainer = document.getElementById('appointmentsTableContainer');
 
@@ -58,13 +59,14 @@ const initAppointments = () => {
 }
 
 const handleEditAppointment = (id) => {
-    const appointment = getAppointmentById(citas, id)
+    const appointment = getAppointmentById(currentAppointments, id)
     openEditModal(appointment);
 };
 
-const renderCitas = () => {
-    const totalAppointmentes = getTotalAppointments(citas);
-    const statusAppointments = getStatusAppointments(citas);
+const renderCitas = (appointments) => {
+    currentAppointments = appointments;
+    const totalAppointmentes = getTotalAppointments(appointments);
+    const statusAppointments = getStatusAppointments(appointments);
     toggleDropdown({onEdit: handleEditAppointment});
     return `
         <div class="dashboard" id="appointments">
@@ -107,7 +109,7 @@ const renderCitas = () => {
                         <div id="appointmentsTableContainer">
                             ${table({
                                 columns: appointmenteColumns,
-                                data: citas
+                                data: appointments
                             })}
                         </div>
                     </div>

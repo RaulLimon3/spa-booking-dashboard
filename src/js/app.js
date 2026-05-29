@@ -1,4 +1,3 @@
-// import { toggleDropdown } from "./components/dropdown";
 import { initModal } from "./modules/modals";
 import { initNavBar, toggleSidebar } from "./components/navbar";
 import { initAppointments, renderCitas } from "./modules/citas";
@@ -6,13 +5,14 @@ import { initClients, renderClientes } from "./modules/clientes";
 import { renderDashboard } from "./modules/dashboard";
 import { renderServicios } from "./modules/servicios";
 import { citas } from "./store/store";
+import { getAppointments } from "./service/storage";
+
+let currentRoute = null;
 
 // Cargamos el contenido 
 initNavBar();
 
 toggleSidebar();
-
-// toggleDropdown();
 
 initModal();
 
@@ -21,8 +21,8 @@ const dashboardSection = document.getElementById('dashboardSection');
 
 // Declaramos nuestos paneles existente
 const routes = {
-    Dashboard: { 
-        render: renderDashboard 
+    Dashboard: {
+        render: renderDashboard
     },
     Citas: {
         render: renderCitas,
@@ -37,8 +37,20 @@ const routes = {
     }
 };
 
+const renderRoute = (route) => {
+    const appointments = getAppointments();
+
+    currentRoute = route;
+
+    dashboardSection.innerHTML = route.render(appointments);
+
+    if (route.init) {
+        route.init();
+    }
+};
+
 // Mostramos el panel de control inicial
-dashboardSection.innerHTML = routes.Dashboard.render();
+renderRoute(routes.Dashboard);
 
 // Accedemos a la secciones existentes
 const currentSection = document.querySelectorAll('[data-section]');
@@ -48,12 +60,10 @@ currentSection.forEach(btn => {
     btn.addEventListener('click', () => {
         // Extraemos el valor de la seccion
         const section = btn.dataset.section;
-        const currentRoute = routes[section];
+        const currentRouteSelected = routes[section];
         // Mostramos el dashboard correspondiente
-        dashboardSection.innerHTML = currentRoute.render();
-
-        if (currentRoute.init) {
-            currentRoute.init();
-        }
+        renderRoute(currentRouteSelected);
     });
 });
+
+export { renderRoute, currentRoute }; 

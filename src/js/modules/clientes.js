@@ -3,10 +3,11 @@ import { table } from "../components/tables";
 import { searchAppointments } from "../service/appointments";
 import { citas } from "../store/store";
 
+let currentAppoitnments = [];
 let defaultQuery = '';
 
 const renderClientsTable = () => {
-    const searchClient = searchAppointments(citas, defaultQuery);
+    const searchClient = searchAppointments(currentAppoitnments, defaultQuery);
     const clientTable = document.getElementById('clientsTable');
     if (!clientTable) return;
     clientTable.innerHTML = table({
@@ -26,7 +27,8 @@ const initClients = () => {
     });
 };
 
-const renderClientes = () => {
+const renderClientes = (appointments) => {
+    currentAppoitnments = appointments;
     return `
         <div class="dashboard" id="clients">
             <div class="dashboard__information">
@@ -44,7 +46,7 @@ const renderClientes = () => {
                         <div id="clientsTable">
                             ${table({
                                 columns: clientColumns,
-                                data: citas
+                                data: appointments
                             })}
                         </div>
                     </div>

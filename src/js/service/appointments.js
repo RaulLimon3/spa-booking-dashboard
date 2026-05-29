@@ -44,7 +44,11 @@ const getNextUpComingAppointments = (appointments) => {
 
     // Devolvemos las sitas 
     return appointments.filter(appointment => appointment.fecha === currentDay)
-    .sort((a, b) => a.hora.localeCompare(b.hora)).slice(0, totalAppointments);
+        .sort((a, b) => a.hora.localeCompare(b.hora)).slice(0, totalAppointments);
+};
+
+const getLastestAppointments = (appointments) => {
+    return [...appointments].sort((a, b) => b.id - a.id).slice(0, 8);
 };
 
 /* 📌 Citas */
@@ -75,13 +79,13 @@ const filterAppointments = (appointments, filters) => {
     return filtered;
 };
 
-const searchAppointments = (appointments,query) => {
+const searchAppointments = (appointments, query) => {
     // Verificamos que haya busqueda
     if (!query) {
         return appointments;
     }
     const normalizedQuery = query.trim().toLowerCase();
-    return appointments.filter(appointment => 
+    return appointments.filter(appointment =>
         appointment.cliente.toLowerCase().includes(normalizedQuery) ||
         appointment.telefono.toString().includes(normalizedQuery)
     );
@@ -117,7 +121,9 @@ const getUniqueServices = (appointments) => {
     ).values()];
 };
 
-export { getTotalClients, getTotalIncomes, getNewAppointments, 
+export {
+    getTotalClients, getTotalIncomes, getNewAppointments,
     getTodayAppointments, getStatusAppointments, getTotalAppointments,
     filterAppointments, searchAppointments, getNextUpComingAppointments,
-    getUniqueServices, getAppointmentById };
+    getUniqueServices, getAppointmentById, getLastestAppointments as getLastAppointments
+};

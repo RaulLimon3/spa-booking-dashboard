@@ -3,8 +3,8 @@ import { table } from "../components/tables";
 import { getUniqueServices } from "../service/appointments";
 import { citas } from "../store/store";
 
-export const renderServicios = () => {
-    const services = getUniqueServices(citas);
+export const renderServicios = (appointments) => {
+    const services = getUniqueServices(appointments);
     return `
         <div class="dashboard" id="services">
             <div class="dashboard__information">

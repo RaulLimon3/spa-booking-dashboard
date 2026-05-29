@@ -1,17 +1,17 @@
 import { statCard, appointmentCard, emptyCard } from "../components/cards";
 import { dashboardColumns } from "../components/columns";
 import { table } from "../components/tables";
-import { getNewAppointments, getNextUpComingAppointments, getTodayAppointments, getTotalClients, getTotalIncomes } from "../service/appointments";
-import { citas } from "../store/store";
+import { getLastAppointments, getNewAppointments, getNextUpComingAppointments, getTodayAppointments, getTotalClients, getTotalIncomes } from "../service/appointments";
 import { currencyFormat } from "../utils/helpers";
 
-export const renderDashboard = () => {
+export const renderDashboard = (appointments) => {
     // Extraemos los datos
-    const todayAppointments = getTodayAppointments(citas);
-    const totalIncomes = getTotalIncomes(citas);
-    const newAppointments = getNewAppointments(citas);
-    const totalClients = getTotalClients(citas);
-    const upComingAppointments = getNextUpComingAppointments(citas);
+    const todayAppointments = getTodayAppointments(appointments);
+    const totalIncomes = getTotalIncomes(appointments);
+    const newAppointments = getNewAppointments(appointments);
+    const totalClients = getTotalClients(appointments);
+    const upComingAppointments = getNextUpComingAppointments(appointments);
+    const lastestAppointments = getLastAppointments(appointments);
 
     // Mostramos nuestro Dashboard
     return `
@@ -60,7 +60,7 @@ export const renderDashboard = () => {
                         </div>
                         ${table({
                             columns: dashboardColumns,
-                            data: citas
+                            data: lastestAppointments
                         })}
                     </div>
                 </div>

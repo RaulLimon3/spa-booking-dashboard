@@ -1,3 +1,4 @@
+import { currentRoute, renderRoute } from "../app";
 import { closeModal } from "../modules/modals";
 import { getAppointments, saveAppointments } from "../service/storage";
 import { generateAppointmentId } from "../utils/generateId";
@@ -58,10 +59,8 @@ const initForm = () => {
             servicio: selectedService,
             fecha: data.date,
             hora: data.hour,
-            status: 'pendiente'
+            estado: 'pendiente'
         };
-
-        console.log(newAppointment);
 
         appointments.unshift(newAppointment);
 
@@ -73,7 +72,8 @@ const initForm = () => {
         // Cerramos el modal
         closeModal();
 
-        console.log(data);
+        // Actualizamos el contenido
+        renderRoute(currentRoute);
     });
 };
 
