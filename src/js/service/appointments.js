@@ -102,6 +102,10 @@ const filterByService = (appointments, service) => {
     return appointments.filter(cita => cita.servicio.nombre.toLowerCase() === service.toLowerCase())
 };
 
+const getAppointmentById = (appointments, id) => {
+    return appointments.find(appointment => appointment.id === Number(id));
+};
+
 /* 📌 Servicios */
 
 const getUniqueServices = (appointments) => {
@@ -116,4 +120,4 @@ const getUniqueServices = (appointments) => {
 export { getTotalClients, getTotalIncomes, getNewAppointments, 
     getTodayAppointments, getStatusAppointments, getTotalAppointments,
     filterAppointments, searchAppointments, getNextUpComingAppointments,
-    getUniqueServices };
+    getUniqueServices, getAppointmentById };

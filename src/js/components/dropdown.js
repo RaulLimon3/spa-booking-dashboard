@@ -10,10 +10,17 @@ const dropdown = (id) => {
     `;
 };
 
-const toggleDropdown = () => {
+const toggleDropdown = ({onEdit}) => {
     document.addEventListener('click', (e) => {
         // Establecemos el boton a cliquear
         const dropdownBtn = e.target.closest('.dropdown__toggle');
+        const editBtn = e.target.closest('.dropdown__item--edit');
+
+        if (editBtn) {
+            const id = editBtn.dataset.edit;
+            onEdit?.(id);
+            return;
+        }
         // Verificamos que se de clic sobre el boton
         if (!dropdownBtn) {
             closeAllDropdowns();

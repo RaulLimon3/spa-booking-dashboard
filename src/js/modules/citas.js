@@ -1,8 +1,10 @@
 import { renderValue, statCard } from "../components/cards";
 import { appointmenteColumns } from "../components/columns";
+import { toggleDropdown } from "../components/dropdown";
 import { table } from "../components/tables";
-import { filterAppointments, getStatusAppointments, getTotalAppointments } from "../service/appointments";
+import { filterAppointments, getAppointmentById, getStatusAppointments, getTotalAppointments } from "../service/appointments";
 import { citas } from "../store/store";
+import { openEditModal } from "./modals";
 
 // Establecemos los filtros por defecto
 const filters = {
@@ -55,9 +57,15 @@ const initAppointments = () => {
     });
 }
 
+const handleEditAppointment = (id) => {
+    const appointment = getAppointmentById(citas, id)
+    openEditModal(appointment);
+};
+
 const renderCitas = () => {
     const totalAppointmentes = getTotalAppointments(citas);
     const statusAppointments = getStatusAppointments(citas);
+    toggleDropdown({onEdit: handleEditAppointment});
     return `
         <div class="dashboard" id="appointments">
             <div class="dashboard__statistics">

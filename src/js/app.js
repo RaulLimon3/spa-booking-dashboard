@@ -1,4 +1,4 @@
-import { toggleDropdown } from "./components/dropdown";
+// import { toggleDropdown } from "./components/dropdown";
 import { initModal } from "./modules/modals";
 import { initNavBar, toggleSidebar } from "./components/navbar";
 import { initAppointments, renderCitas } from "./modules/citas";
@@ -12,7 +12,7 @@ initNavBar();
 
 toggleSidebar();
 
-toggleDropdown();
+// toggleDropdown();
 
 initModal();
 

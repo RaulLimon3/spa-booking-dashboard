@@ -11,22 +11,27 @@ const renderModalContent = (content) => {
 }
 
 const initModal = () => {
-    // Renderizamos nuestro contenido
-    renderModalContent(appointmentModal());
-    initForm();
     // Acceder al boton para abrir el modal
     const openModalBtn = document.getElementById('btnAdd');
 
-    // Accedemos al boton para cerrar el modal
-    const closeModalBtn = document.getElementById('closeModal');
-
-    if (!openModalBtn || !closeModalBtn || !modal) return;
+    if (!openModalBtn || !modal) return;
 
     // Abrimos el modal
-    openModalBtn.addEventListener('click', openModal);
+    openModalBtn.addEventListener('click', () => {
+        // Renderizamos nuestro contenido
+        openCreateModal();
+    });
 
     // Cerramos el modal
-    closeModalBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+        if (e.target.closest('#closeModal')) {
+            closeModal();
+        }
+
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
 };
 
 const openModal = () => {
@@ -34,8 +39,20 @@ const openModal = () => {
 };
 
 const closeModal = () => {
-    resetFormState();
+    resetFormState?.();
     modal.classList.remove('modal--active');
 };
 
-export { initModal, renderModalContent, closeModal };
+const openEditModal = (appointment) => {
+    openModal();
+    renderModalContent(appointmentModal(appointment, 'edit'));
+    initForm();
+};
+
+const openCreateModal = () => {
+    renderModalContent(appointmentModal());
+    initForm();
+    openModal();
+}
+
+export { initModal, renderModalContent, closeModal, openEditModal };
