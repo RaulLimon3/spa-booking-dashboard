@@ -2,7 +2,7 @@ import { initModal } from "./modules/modals";
 import { initNavBar, toggleSidebar } from "./components/navbar";
 import { initAppointments, renderCitas } from "./modules/citas";
 import { initClients, renderClientes } from "./modules/clientes";
-import { renderDashboard } from "./modules/dashboard";
+import { initDashboard, renderDashboard } from "./modules/dashboard";
 import { renderServicios } from "./modules/servicios";
 import { citas } from "./store/store";
 import { getAppointments } from "./service/storage";
@@ -22,7 +22,8 @@ const dashboardSection = document.getElementById('dashboardSection');
 // Declaramos nuestos paneles existente
 const routes = {
     Dashboard: {
-        render: renderDashboard
+        render: renderDashboard,
+        init: initDashboard
     },
     Citas: {
         render: renderCitas,

@@ -20,7 +20,7 @@ const renderValue = (value) => {
     return result;
 }
 
-const appointmentCard = ({name, date, hour}) => {
+const appointmentCard = ({ id, name, date, hour }) => {
     return `
         <div class="card__information">
             <div class="card__data">
@@ -33,8 +33,8 @@ const appointmentCard = ({name, date, hour}) => {
                 </div>
             </div>
             <div class="card__buttons">
-                <button type="button" class="btn btn__danger">Cancelar</button>
-                <button type="button" class="btn btn__success">Completado</button>
+                <button type="button" class="btn btn__danger btn-cancel-appointment" data-id="${id}">Cancelar</button>
+                <button type="button" class="btn btn__success btn-complete-appointment" data-id="${id}">Completado</button>
             </div>
         </div>
     `;

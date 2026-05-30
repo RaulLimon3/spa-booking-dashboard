@@ -1,7 +1,9 @@
+import { currentRoute, renderRoute } from "../app";
 import { statCard, appointmentCard, emptyCard } from "../components/cards";
 import { dashboardColumns } from "../components/columns";
 import { table } from "../components/tables";
-import { getLastAppointments, getNewAppointments, getNextUpComingAppointments, getTodayAppointments, getTotalClients, getTotalIncomes } from "../service/appointments";
+import { getLastestAppointments, getNewAppointments, getUpcomingAppointmentsToday, getTodayAppointments, getTotalClients, getTotalIncomes, updateAppointmentStatus } from "../service/appointments";
+import { getAppointments, saveAppointments } from "../service/storage";
 import { currencyFormat } from "../utils/helpers";
 
 export const renderDashboard = (appointments) => {
@@ -10,27 +12,27 @@ export const renderDashboard = (appointments) => {
     const totalIncomes = getTotalIncomes(appointments);
     const newAppointments = getNewAppointments(appointments);
     const totalClients = getTotalClients(appointments);
-    const upComingAppointments = getNextUpComingAppointments(appointments);
-    const lastestAppointments = getLastAppointments(appointments);
+    const upComingAppointments = getUpcomingAppointmentsToday(appointments);
+    const lastestAppointments = getLastestAppointments(appointments);
 
     // Mostramos nuestro Dashboard
     return `
         <div class="dashboard" id="dashboard">
             <div class="dashboard__statistics">
-            ${statCard({icon: './src/assets/icons/calendar.svg', text: 'Total de citas hoy', value: todayAppointments})}
-            ${statCard({icon: './src/assets/icons/banknote-arrow-up.svg', text: 'Total de ingresos', value: currencyFormat(totalIncomes)})}
-            ${statCard({icon: './src/assets/icons/calendar-plus.svg', text: 'Total de citas nuevas', value: newAppointments})}
-            ${statCard({icon: './src/assets/icons/book-user.svg', text: 'Total de clientes', value: totalClients})}
+            ${statCard({ icon: './src/assets/icons/calendar.svg', text: 'Total de citas hoy', value: todayAppointments })}
+            ${statCard({ icon: './src/assets/icons/banknote-arrow-up.svg', text: 'Total de ingresos', value: currencyFormat(totalIncomes) })}
+            ${statCard({ icon: './src/assets/icons/calendar-plus.svg', text: 'Total de citas nuevas', value: newAppointments })}
+            ${statCard({ icon: './src/assets/icons/book-user.svg', text: 'Total de clientes', value: totalClients })}
             </div>
             <div class="dashboard__information">
                 <div class="card">
                     <div class="card__content">
                         <div class="card__heading">
                             <img src="./src/assets/icons/calendar-clock.svg" alt="Icono de citas proximas">
-                            <p class="card__text">Proxima cita</p>
+                            <p class="card__text">Proximas citas</p>
                         </div>
                         <div class="card__appointment">
-                            ${upComingAppointments.length ? 
+                            ${upComingAppointments.length ?
                                 renderUpcomingAppointments(upComingAppointments)
                                 : emptyCard()
                             }
@@ -70,11 +72,42 @@ export const renderDashboard = (appointments) => {
 };
 
 const renderUpcomingAppointments = (appointments) => {
-    return appointments.map(appointment => 
+    return appointments.map(appointment =>
         appointmentCard({
+            id: appointment.id,
             name: appointment.cliente,
             date: appointment.fecha,
             hour: appointment.hora
         })
     ).join('');
 };
+
+const initDashboard = () => {
+    const dashboard = document.getElementById('dashboard');
+    dashboard?.addEventListener('click', (e) => {
+        const completeBtn = e.target.closest('.btn-complete-appointment');
+        const cancelBtn = e.target.closest('.btn-cancel-appointment');
+
+        if (completeBtn) {
+            const id = completeBtn.dataset.id;
+            handelAppointmentStatus(id, 'atendido');
+        }
+
+        if (cancelBtn) {
+            const id = cancelBtn.dataset.id;
+            handelAppointmentStatus(id, 'cancelado');
+        }
+    });
+};
+
+const handelAppointmentStatus = (id, status) => {
+    const appointments = getAppointments();
+
+    const updateAppointments = updateAppointmentStatus(appointments, id, status);
+
+    saveAppointments(updateAppointments);
+
+    renderRoute(currentRoute);
+};
+
+export { initDashboard };

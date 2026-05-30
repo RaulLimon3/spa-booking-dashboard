@@ -35,20 +35,28 @@ const getCurrentDay = () => {
     return new Date().toISOString().split('T')[0];
 }
 
-const getNextUpComingAppointments = (appointments) => {
+const getUpcomingAppointmentsToday = (appointments) => {
     // Establecemos el dia de hoy
     const currentDay = getCurrentDay();
 
-    // Obtnenemos el total de citas
-    const totalAppointments = getTodayAppointments(appointments);
-
     // Devolvemos las sitas 
-    return appointments.filter(appointment => appointment.fecha === currentDay)
-        .sort((a, b) => a.hora.localeCompare(b.hora)).slice(0, totalAppointments);
+    return appointments.filter(appointment => 
+            appointment.fecha === currentDay && 
+            appointment.estado === 'pendiente'
+        )
+        .sort((a, b) => a.hora.localeCompare(b.hora));
 };
 
 const getLastestAppointments = (appointments) => {
-    return [...appointments].sort((a, b) => b.id - a.id).slice(0, 8);
+    return appointments.filter(cita => cita.estado === 'pendiente').sort((a, b) => b.id - a.id).slice(0, 8);
+};
+
+const updateAppointmentStatus = (appointments, id, status) => {
+    return appointments.map(appointment => 
+        appointment.id === Number(id)
+            ? {...appointment, estado: status}
+            : appointment
+    );
 };
 
 /* 📌 Citas */
@@ -124,6 +132,7 @@ const getUniqueServices = (appointments) => {
 export {
     getTotalClients, getTotalIncomes, getNewAppointments,
     getTodayAppointments, getStatusAppointments, getTotalAppointments,
-    filterAppointments, searchAppointments, getNextUpComingAppointments,
-    getUniqueServices, getAppointmentById, getLastestAppointments as getLastAppointments
+    filterAppointments, searchAppointments, getUpcomingAppointmentsToday,
+    getUniqueServices, getAppointmentById, getLastestAppointments,
+    updateAppointmentStatus
 };
