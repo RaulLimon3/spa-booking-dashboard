@@ -36,21 +36,6 @@ export const renderDashboard = (appointments) => {
                                 renderUpcomingAppointments(upComingAppointments)
                                 : emptyCard()
                             }
-                            <div class="card__information">
-                                <div class="card__data">
-                                    <div class="card__username">
-                                        <p>Raul Limon</p>
-                                    </div>
-                                    <div class="card__date-information">
-                                        <span class="card__date">06/05/2026</span>
-                                        <span class="card__hour">14:26p.m</span>
-                                    </div>
-                                </div>
-                                <div class="card__buttons">
-                                    <button type="button" class="btn btn__danger">Cancelar</button>
-                                    <button type="button" class="btn btn__success">Completado</button>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -76,6 +61,7 @@ const renderUpcomingAppointments = (appointments) => {
         appointmentCard({
             id: appointment.id,
             name: appointment.cliente,
+            service: appointment.servicio.nombre,
             date: appointment.fecha,
             hour: appointment.hora
         })

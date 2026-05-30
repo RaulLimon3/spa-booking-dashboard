@@ -20,12 +20,13 @@ const renderValue = (value) => {
     return result;
 }
 
-const appointmentCard = ({ id, name, date, hour }) => {
+const appointmentCard = ({ id, name, service, date, hour }) => {
     return `
         <div class="card__information">
             <div class="card__data">
                 <div class="card__username">
                     <p>${name}</p>
+                    <p class="card__service">Servicio: <span class="card__service-name">${service}</span></p>
                 </div>
                 <div class="card__date-information">
                     <span class="card__date">${date}</span>
