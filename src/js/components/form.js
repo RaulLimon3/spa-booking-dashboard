@@ -1,5 +1,6 @@
 import { currentRoute, renderRoute } from "../app";
 import { closeModal } from "../modules/modals";
+import { getAppointmentById } from "../service/appointments";
 import { getAppointments, saveAppointments } from "../service/storage";
 import { generateAppointmentId } from "../utils/generateId";
 import { services } from "../utils/services";
@@ -47,24 +48,38 @@ const initForm = () => {
 
         if (hasCustomerError || hasPhoneError || hasServiceError || hasDateError || hasHourError) return;
 
+        const appointmentId = appointmentForm.dataset.id;
+
         // Guardamos los datos en localStorage
         const appointments = getAppointments();
 
         const selectedService = services[data.service];
 
-        const newAppointment = {
-            id: generateAppointmentId(),
-            cliente: data.customerName,
-            telefono: data.customerPhone,
-            servicio: selectedService,
-            fecha: data.date,
-            hora: data.hour,
-            estado: 'pendiente'
-        };
+        if (appointmentId) {
+            const appointment = getAppointmentById(appointments, appointmentId);
 
-        appointments.unshift(newAppointment);
+            appointment.cliente = data.customerName;
+            appointment.telefono = data.customerPhone;
+            appointment.servicio = selectedService;
+            appointment.fecha = data.date;
+            appointment.hora = data.hour;
 
-        saveAppointments(appointments);
+            saveAppointments(appointments);
+        } else {
+            const newAppointment = {
+                id: generateAppointmentId(),
+                cliente: data.customerName,
+                telefono: data.customerPhone,
+                servicio: selectedService,
+                fecha: data.date,
+                hora: data.hour,
+                estado: 'pendiente'
+            };
+
+            appointments.unshift(newAppointment);
+
+            saveAppointments(appointments);
+        }
 
         // Limpiamos le formulario
         appointmentForm.reset();
@@ -111,6 +126,7 @@ const resetFormState = () => {
     appointmentForm.reset();
     clearError(errorFormMessage, inputs);
     cleanInputsError(inputErrors);
+    renderRoute(currentRoute);
 }
 
 const validateField = (input, errorElement, validation) => {

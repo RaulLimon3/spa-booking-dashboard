@@ -10,7 +10,11 @@ const dropdown = (id) => {
     `;
 };
 
+let initalized = false;
+
 const toggleDropdown = ({onEdit}) => {
+    if (initalized) return;
+    initalized = true;
     document.addEventListener('click', (e) => {
         // Establecemos el boton a cliquear
         const dropdownBtn = e.target.closest('.dropdown__toggle');

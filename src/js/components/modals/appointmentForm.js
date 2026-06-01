@@ -7,7 +7,7 @@ export const appointmentModal = (appointment = null, mode = "create") => {
                 <img src="./src/assets/icons/x.svg" alt="Icono de cerrar" class="icon">
             </button>
         </div>
-        <form class="form__appointment" id="appointmentForm">
+        <form class="form__appointment" id="appointmentForm" data-id="${appointment?.id || ''}">
             <span class="form__error-message" id="formError">Lorem ipsum dolor sit amet.</span>
             <div class="form__group">
                 <label for="customerName">Nombre del cliente</label>
@@ -23,8 +23,8 @@ export const appointmentModal = (appointment = null, mode = "create") => {
                 <label for="serviceInput">Servicios</label>
                 <select name="serviceInput" class="input" id="serviceInput">
                     <option value="" disabled selected hidden>Servicios</option>
-                    <option value="facial" ${appointment?.servicio === 'facial' ? 'selected' : ''}>Facial</option>
-                    <option value="masaje" ${appointment?.servicio === 'masaje' ? 'selected' : ''}>Masaje</option>
+                    <option value="facial" ${appointment?.servicio.nombre === 'Facial' ? 'selected' : ''}>Facial</option>
+                    <option value="masaje" ${appointment?.servicio.nombre === 'Masaje' ? 'selected' : ''}>Masaje</option>
                 </select>
                 <span class="form__group-error-message" id="serviceError">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</span>
             </div>

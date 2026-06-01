@@ -30,6 +30,8 @@ const renderAppointmentsTable = () => {
 }
 
 const initAppointments = () => {
+    toggleDropdown({ onEdit: handleEditAppointment });
+
     const searchInput = document.getElementById('appointmentsSearch');
     const dateInput = document.getElementById('appointmentsDate');
     const statusInput = document.getElementById('appointmentStatus');
@@ -37,7 +39,7 @@ const initAppointments = () => {
 
     if (!searchInput || !dateInput || !statusInput || !serviceInput) return;
 
-    searchInput.addEventListener('input', (e) =>{
+    searchInput.addEventListener('input', (e) => {
         filters.query = e.target.value;
         renderAppointmentsTable();
     });
@@ -67,14 +69,13 @@ const renderCitas = (appointments) => {
     currentAppointments = appointments;
     const totalAppointmentes = getTotalAppointments(appointments);
     const statusAppointments = getStatusAppointments(appointments);
-    toggleDropdown({onEdit: handleEditAppointment});
     return `
         <div class="dashboard" id="appointments">
             <div class="dashboard__statistics">
-            ${statCard({icon: './src/assets/icons/book-open.svg', text: 'Total de citas', value: totalAppointmentes})}
-            ${statCard({icon: './src/assets/icons/book-check.svg', text: 'Citas atendidas', value: statusAppointments.attended})}
-            ${statCard({icon: './src/assets/icons/book-alert.svg', text: 'Citas pendientes', value: statusAppointments.pending})}
-            ${statCard({icon: './src/assets/icons/book-x.svg', text: 'Citas canceladas', value: statusAppointments.canceled})}
+            ${statCard({ icon: './src/assets/icons/book-open.svg', text: 'Total de citas', value: totalAppointmentes })}
+            ${statCard({ icon: './src/assets/icons/book-check.svg', text: 'Citas atendidas', value: statusAppointments.attended })}
+            ${statCard({ icon: './src/assets/icons/book-alert.svg', text: 'Citas pendientes', value: statusAppointments.pending })}
+            ${statCard({ icon: './src/assets/icons/book-x.svg', text: 'Citas canceladas', value: statusAppointments.canceled })}
             </div>
             <div class="dashboard__information">
                 <div class="card">
@@ -108,9 +109,9 @@ const renderCitas = (appointments) => {
                         </div>
                         <div id="appointmentsTableContainer">
                             ${table({
-                                columns: appointmenteColumns,
-                                data: appointments
-                            })}
+        columns: appointmenteColumns,
+        data: appointments
+    })}
                         </div>
                     </div>
                 </div>
