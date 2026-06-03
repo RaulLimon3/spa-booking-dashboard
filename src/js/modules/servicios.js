@@ -1,10 +1,12 @@
 import { servicesColumns } from "../components/columns";
 import { table } from "../components/tables";
-import { getUniqueServices } from "../service/appointments";
+// import { getUniqueServices } from "../service/appointments";
 import { citas } from "../store/store";
+import { services } from "../utils/services";
 
 export const renderServicios = (appointments) => {
-    const services = getUniqueServices(appointments);
+    // const services = getUniqueServices(appointments);
+    const serviceList = Object.values(services)
     return `
         <div class="dashboard" id="services">
             <div class="dashboard__information">
@@ -16,7 +18,7 @@ export const renderServicios = (appointments) => {
                         </div>
                         ${table({
                             columns: servicesColumns,
-                            data: services
+                            data: serviceList
                         })}
                     </div>
                 </div>
