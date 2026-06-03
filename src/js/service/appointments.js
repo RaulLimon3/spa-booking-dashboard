@@ -118,6 +118,10 @@ const getAppointmentById = (appointments, id) => {
     return appointments.find(appointment => appointment.id === Number(id));
 };
 
+const updateAppointments = (appointments, id) => {
+    return appointments.filter(appointment => appointment.id !== Number(id));
+};
+
 /* 📌 Servicios */
 
 const getUniqueServices = (appointments) => {
@@ -134,5 +138,5 @@ export {
     getTodayAppointments, getStatusAppointments, getTotalAppointments,
     filterAppointments, searchAppointments, getUpcomingAppointmentsToday,
     getUniqueServices, getAppointmentById, getLastestAppointments,
-    updateAppointmentStatus
+    updateAppointmentStatus, updateAppointments
 };

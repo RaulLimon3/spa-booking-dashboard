@@ -1,8 +1,10 @@
+import { currentRoute, renderRoute } from "../app";
 import { renderValue, statCard } from "../components/cards";
 import { appointmenteColumns } from "../components/columns";
 import { toggleDropdown } from "../components/dropdown";
 import { table } from "../components/tables";
-import { filterAppointments, getAppointmentById, getStatusAppointments, getTotalAppointments } from "../service/appointments";
+import { filterAppointments, getAppointmentById, getStatusAppointments, getTotalAppointments, updateAppointments } from "../service/appointments";
+import { getAppointments, saveAppointments } from "../service/storage";
 import { citas } from "../store/store";
 import { openEditModal } from "./modals";
 
@@ -30,7 +32,7 @@ const renderAppointmentsTable = () => {
 }
 
 const initAppointments = () => {
-    toggleDropdown({ onEdit: handleEditAppointment });
+    toggleDropdown({ onEdit: handleEditAppointment, onDelete: handleDeleteAppointment });
 
     const searchInput = document.getElementById('appointmentsSearch');
     const dateInput = document.getElementById('appointmentsDate');
@@ -61,9 +63,19 @@ const initAppointments = () => {
 }
 
 const handleEditAppointment = (id) => {
-    const appointment = getAppointmentById(currentAppointments, id)
+    const appointment = getAppointmentById(currentAppointments, id);
     openEditModal(appointment);
 };
+
+const handleDeleteAppointment = (id) => {
+    const appointments = getAppointments();
+
+    const updateAppointment = updateAppointments(appointments, id);
+
+    saveAppointments(updateAppointment);
+
+    renderRoute(currentRoute);
+}
 
 const renderCitas = (appointments) => {
     currentAppointments = appointments;
@@ -109,9 +121,9 @@ const renderCitas = (appointments) => {
                         </div>
                         <div id="appointmentsTableContainer">
                             ${table({
-        columns: appointmenteColumns,
-        data: appointments
-    })}
+                                columns: appointmenteColumns,
+                                data: appointments
+                            })}
                         </div>
                     </div>
                 </div>

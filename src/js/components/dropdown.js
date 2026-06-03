@@ -12,19 +12,30 @@ const dropdown = (id) => {
 
 let initalized = false;
 
-const toggleDropdown = ({onEdit}) => {
+const toggleDropdown = ({onEdit, onDelete}) => {
     if (initalized) return;
     initalized = true;
     document.addEventListener('click', (e) => {
         // Establecemos el boton a cliquear
         const dropdownBtn = e.target.closest('.dropdown__toggle');
         const editBtn = e.target.closest('.dropdown__item--edit');
+        const deleteBtn = e.target.closest('.dropdown__item--remove');
 
+        // Verificamos que se de clic sobre el boton de editar
         if (editBtn) {
             const id = editBtn.dataset.edit;
             onEdit?.(id);
             return;
         }
+
+        // Verificamos que se de clic sobre el boton de eliminat
+        if (deleteBtn) {
+            const id = deleteBtn.dataset.remove;
+            onDelete?.(id);
+            closeAllDropdowns();
+            return;
+        }
+
         // Verificamos que se de clic sobre el boton
         if (!dropdownBtn) {
             closeAllDropdowns();
