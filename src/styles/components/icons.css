@@ -58,3 +58,14 @@
 .aside--expanded .icon__btn--close {
     display: flex;
 }
+
+.modal__state-icon {
+    width: 64px;
+    height: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: var(--radius-full);
+    box-shadow: var(--shadow-lg);
+    font-size: var(--fz-3xl);
+}
