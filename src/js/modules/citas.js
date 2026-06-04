@@ -1,12 +1,11 @@
-import { currentRoute, renderRoute } from "../app";
 import { renderValue, statCard } from "../components/cards";
 import { appointmenteColumns } from "../components/columns";
 import { toggleDropdown } from "../components/dropdown";
 import { table } from "../components/tables";
-import { filterAppointments, getAppointmentById, getStatusAppointments, getTotalAppointments, updateAppointments } from "../service/appointments";
-import { getAppointments, saveAppointments } from "../service/storage";
+import { filterAppointments, getAppointmentById, getStatusAppointments, getTotalAppointments } from "../service/appointments";
+import { getAppointments } from "../service/storage";
 import { citas } from "../store/store";
-import { openEditModal } from "./modals";
+import { openConfirmModal, openEditModal } from "./modals";
 
 let currentAppointments = [];
 // Establecemos los filtros por defecto
@@ -69,12 +68,7 @@ const handleEditAppointment = (id) => {
 
 const handleDeleteAppointment = (id) => {
     const appointments = getAppointments();
-
-    const updateAppointment = updateAppointments(appointments, id);
-
-    saveAppointments(updateAppointment);
-
-    renderRoute(currentRoute);
+    openConfirmModal(id);
 }
 
 const renderCitas = (appointments) => {

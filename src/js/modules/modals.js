@@ -1,5 +1,9 @@
+import { currentRoute, renderRoute } from "../app";
 import { initForm, resetFormState } from "../components/form";
 import { appointmentModal } from "../components/modals/appointmentForm";
+import { stateModal } from "../components/modals/statemodal";
+import { updateAppointments } from "../service/appointments";
+import { getAppointments, saveAppointments } from "../service/storage";
 
 const modal = document.getElementById('modal');
 
@@ -44,9 +48,9 @@ const closeModal = () => {
 };
 
 const openEditModal = (appointment) => {
-    openModal();
     renderModalContent(appointmentModal(appointment, 'edit'));
     initForm();
+    openModal();
 };
 
 const openCreateModal = () => {
@@ -55,4 +59,54 @@ const openCreateModal = () => {
     openModal();
 }
 
-export { initModal, renderModalContent, closeModal, openEditModal };
+const openSuccessModal = (message) => {
+    renderModalContent(
+        stateModal({
+            type: 'success',
+            message
+        })
+    );
+
+    openModal();
+
+    setTimeout(() => {
+        closeModal();
+    }, 1500);
+};
+
+const openConfirmModal = (appointmentId) => {
+    renderModalContent(
+        stateModal({
+            type: 'confirm',
+            appointmentId
+        })
+    );
+
+    openModal();
+
+    const cancelBtn = document.getElementById('cancelBtn');
+    const confirmBtn = document.getElementById('confirmBtn');
+
+    cancelBtn?.addEventListener('click', () => {
+        closeModal();
+    });
+
+    confirmBtn?.addEventListener('click', () => {
+        const id = confirmBtn.dataset.id;
+        deleteAppointment(id);
+    });
+};
+
+const deleteAppointment = (id) => {
+    const appointments = getAppointments();
+    const updatedAppointments = updateAppointments(appointments, id);
+    saveAppointments(updatedAppointments);
+    closeModal();
+    renderRoute(currentRoute);
+    openSuccessModal('Cita eliminada exitosamente');
+};
+
+export {
+    initModal, renderModalContent, closeModal, openEditModal,
+    openSuccessModal, openConfirmModal
+};

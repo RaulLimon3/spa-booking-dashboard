@@ -1,5 +1,5 @@
 import { currentRoute, renderRoute } from "../app";
-import { closeModal } from "../modules/modals";
+import { closeModal, openSuccessModal } from "../modules/modals";
 import { getAppointmentById } from "../service/appointments";
 import { getAppointments, saveAppointments } from "../service/storage";
 import { generateAppointmentId } from "../utils/generateId";
@@ -65,6 +65,8 @@ const initForm = () => {
             appointment.hora = data.hour;
 
             saveAppointments(appointments);
+
+            openSuccessModal('Cita actualizada exitosamente');
         } else {
             const newAppointment = {
                 id: generateAppointmentId(),
@@ -79,13 +81,12 @@ const initForm = () => {
             appointments.unshift(newAppointment);
 
             saveAppointments(appointments);
+
+            openSuccessModal('Cita agendada exitosamente');
         }
 
         // Limpiamos le formulario
         appointmentForm.reset();
-
-        // Cerramos el modal
-        closeModal();
 
         // Actualizamos el contenido
         renderRoute(currentRoute);
@@ -120,13 +121,15 @@ const clearError = (element, inputs) => {
 
 const resetFormState = () => {
     const appointmentForm = document.getElementById('appointmentForm');
+
+    if (!appointmentForm) return;
+
     const errorFormMessage = document.getElementById('formError');
     const inputs = appointmentForm.querySelectorAll('.input');
     const inputErrors = appointmentForm.querySelectorAll('.form__group-error-message');
     appointmentForm.reset();
     clearError(errorFormMessage, inputs);
     cleanInputsError(inputErrors);
-    renderRoute(currentRoute);
 }
 
 const validateField = (input, errorElement, validation) => {
