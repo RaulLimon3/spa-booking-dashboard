@@ -30,8 +30,27 @@ const renderAppointmentsTable = () => {
     });
 }
 
+const initFilterControl = () => {
+    const clearFilterBtn = document.getElementById('clearFilters');
+    clearFilterBtn?.addEventListener('click', () => {
+        filters.query = '';
+        filters.date = '';
+        filters.status = '';
+        filters.service = '';
+
+        document.getElementById('appointmentsSearch').value = '';
+        document.getElementById('appointmentsDate').value = '';
+        document.getElementById('appointmentStatus').selectedIndex = 0;
+        document.getElementById('service').selectedIndex = 0;
+
+        renderAppointmentsTable();
+    });
+};
+
 const initAppointments = () => {
     toggleDropdown({ onEdit: handleEditAppointment, onDelete: handleDeleteAppointment });
+
+    initFilterControl();
 
     const searchInput = document.getElementById('appointmentsSearch');
     const dateInput = document.getElementById('appointmentsDate');
@@ -87,8 +106,13 @@ const renderCitas = (appointments) => {
                 <div class="card">
                     <div class="card__content">
                         <div class="card__heading">
-                            <img src="./src/assets/icons/book-plus.svg" alt="Icono de nuevas citas">
-                            <p class="card__text">Nuevas citas</p>
+                            <div class="card__heading-titel">
+                                <img src="./src/assets/icons/book-plus.svg" alt="Icono de nuevas citas">
+                                <p class="card__text">Nuevas citas</p>
+                            </div>
+                            <button type="button" class="btn__cross" id="clearFilters">
+                                <img src="./src/assets/icons/funnel-x.svg" alt="Icono de cerrar" class="icon">
+                            </button>
                         </div>
                         <div class="card__panel-control">
                             <div class="filters">
