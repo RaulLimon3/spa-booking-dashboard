@@ -32,7 +32,7 @@ export const appointmentModal = (appointment = null, mode = "create") => {
                 <label for="appointmentDate">Fecha de la cita</label>
                 <div class="form__input-group">
                     <input type="date" name="appointmentDate" id="appointmentDate" class="input input--full" value="${appointment?.fecha || ''}">
-                    <button type="button" class="btn__cross">
+                    <button type="button" class="btn__cross" id="clearDate">
                         <img src="./src/assets/icons/x.svg" alt="Icono de cerrar" class="icon">
                     </button>
                 </div>
@@ -42,7 +42,7 @@ export const appointmentModal = (appointment = null, mode = "create") => {
                 <label for="appointmentHour">Hora de la cita</label>
                 <div class="form__input-group">
                     <input type="time" name="appointmentHour" id="appointmentHour" class="input input--full" value="${appointment?.hora || ''}">
-                    <button type="button" class="btn__cross">
+                    <button type="button" class="btn__cross" id="clearHour">
                         <img src="./src/assets/icons/x.svg" alt="Icono de cerrar" class="icon">
                     </button>
                 </div>

@@ -6,6 +6,7 @@ import { generateAppointmentId } from "../utils/generateId";
 import { services } from "../utils/services";
 
 const initForm = () => {
+    initFormControls();
     // Accedemos a nuestros elementos de nuestro formulario
     const appointmentForm = document.getElementById('appointmentForm');
     const errorFormMessage = document.getElementById('formError');
@@ -90,6 +91,19 @@ const initForm = () => {
 
         // Actualizamos el contenido
         renderRoute(currentRoute);
+    });
+};
+
+const initFormControls = () => {
+    const clearDateBtn = document.getElementById('clearDate');
+    const clearHourBtn = document.getElementById('clearHour');
+
+    clearDateBtn?.addEventListener('click', () => {
+        document.getElementById('appointmentDate').value = '';
+    });
+
+    clearHourBtn?.addEventListener('click', () => {
+        document.getElementById('appointmentHour').value = '';
     });
 };
 
