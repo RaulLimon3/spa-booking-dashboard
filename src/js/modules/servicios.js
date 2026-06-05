@@ -11,8 +11,10 @@ export const renderServicios = (appointments) => {
                 <div class="card">
                     <div class="card__content">
                         <div class="card__heading">
-                            <img src="./src/assets/icons/settings-2.svg" alt="Icono de servicios">
-                            <p class="card__text">Servicios</p>
+                            <div class="card__heading-title">
+                                <img src="./src/assets/icons/settings-2.svg" alt="Icono de servicios">
+                                <p class="card__text">Servicios</p>
+                            </div>
                         </div>
                         ${table({
                             columns: servicesColumns,

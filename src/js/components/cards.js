@@ -5,8 +5,10 @@ const statCard = ({ icon, text, value }) => {
         <div class="card">
             <div class="card__content">
                 <div class="card__heading">
-                    <img src="${icon}" alt="Icono de calendario">
-                    <p class="card__text">${text}</p>
+                    <div class="card__heading-title">
+                        <img src="${icon}" alt="Icono de calendario">
+                        <p class="card__text">${text}</p>
+                    </div>
                 </div>
                 <span class="card__summary">${renderValue(value)}</span>
             </div>

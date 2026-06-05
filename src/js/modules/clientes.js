@@ -35,8 +35,10 @@ const renderClientes = (appointments) => {
                 <div class="card">
                     <div class="card__content">
                         <div class="card__heading">
-                            <img src="./src/assets/icons/book-user.svg" alt="Icono de clientes">
-                            <p class="card__text">Clientes</p>
+                            <div class="card__heading-title">
+                                <img src="./src/assets/icons/book-user.svg" alt="Icono de clientes">
+                                <p class="card__text">Clientes</p>
+                            </div>
                         </div>
                         <div class="card__panel-control">
                             <div class="searchbar">

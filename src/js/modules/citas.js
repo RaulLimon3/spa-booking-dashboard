@@ -106,7 +106,7 @@ const renderCitas = (appointments) => {
                 <div class="card">
                     <div class="card__content">
                         <div class="card__heading">
-                            <div class="card__heading-titel">
+                            <div class="card__heading-title">
                                 <img src="./src/assets/icons/book-plus.svg" alt="Icono de nuevas citas">
                                 <p class="card__text">Nuevas citas</p>
                             </div>
