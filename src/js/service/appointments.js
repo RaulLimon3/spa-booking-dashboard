@@ -133,10 +133,20 @@ const getUniqueServices = (appointments) => {
     ).values()];
 };
 
+/* 📌 Auxiliares */
+const isHourOccupied = (appointments, date, hour, appointmentId = null) => {
+    return appointments.some(appointment => 
+        appointment.id !== appointmentId &&
+        appointment.fecha === date &&
+        appointment.hora === hour &&
+        appointment.estado !== 'cancelado'
+    );
+};
+
 export {
     getTotalClients, getTotalIncomes, getNewAppointments,
     getTodayAppointments, getStatusAppointments, getTotalAppointments,
     filterAppointments, searchAppointments, getUpcomingAppointmentsToday,
     getUniqueServices, getAppointmentById, getLastestAppointments,
-    updateAppointmentStatus, updateAppointments
+    updateAppointmentStatus, updateAppointments, isHourOccupied
 };

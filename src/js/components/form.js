@@ -1,6 +1,6 @@
 import { currentRoute, renderRoute } from "../app";
 import { closeModal, openSuccessModal } from "../modules/modals";
-import { getAppointmentById } from "../service/appointments";
+import { getAppointmentById, isHourOccupied } from "../service/appointments";
 import { getAppointments, saveAppointments } from "../service/storage";
 import { generateAppointmentId } from "../utils/generateId";
 import { services } from "../utils/services";
@@ -53,6 +53,12 @@ const initForm = () => {
 
         // Guardamos los datos en localStorage
         const appointments = getAppointments();
+
+        // Verificamos que el horario no este ocupado
+        if (isHourOccupied(appointments, data.date, data.hour, appointmentId)) {
+            showError(errorFormMessage, 'La hora seleccionada ya se encuentra ocupada', []);
+            return;
+        }
 
         const selectedService = services[data.service];
 
