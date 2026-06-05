@@ -47,7 +47,24 @@
     box-shadow: var(--shadow-md);
 }
 
-.btn__cross:active {
+.pagination__btn {
+    background: none;
+    padding: var(--space-1);
+    border-radius: var(--radius-md);
+    transition: background 0.3s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.pagination__btn:hover {
+    background: var(--color-bg-main);
+    box-shadow: var(--shadow-md);
+}
+
+.btn__cross:active,
+.pagination__btn:active {
     transform: scale(0.97);
     box-shadow: inset 2px 2px 20px rgba(0, 0, 0, 0.1);
+}
+
+.pagination__btn--hidden {
+    display: none;
 }

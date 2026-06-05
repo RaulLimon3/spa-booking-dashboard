@@ -1,0 +1,21 @@
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--space-1);
+}
+
+.pagination__results {
+    color: var(--color-text-secondary);
+    font-weight: var(--fw-bold);
+}
+
+.pagination__result {
+    color: var(--color-text-main);
+}
+
+.pagination__buttons {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+}

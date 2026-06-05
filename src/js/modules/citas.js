@@ -143,6 +143,23 @@ const renderCitas = (appointments) => {
                                 data: appointments
                             })}
                         </div>
+                        <div class="pagination">
+                            <div class="pagination__results">
+                                <p class="pagination__info">Resultados: 
+                                    <span class="pagination__result">1 - 7</span> de 
+                                    <span class="pagination__result">20</span>
+                                </p>
+                            </div>
+                            <div class="pagination__buttons">
+                                <button type="button" class="pagination__btn pagination__btn--hidden" id="paginationPrev">
+                                    <img src="./src/assets/icons/chevron-left.svg" alt="Icono de anterior" class="icon">
+                                </button>
+                                <span class="pagination__page">1</span>
+                                <button type="button" class="pagination__btn" id="paginationNext">
+                                    <img src="./src/assets/icons/chevron-right.svg" alt="Icono de anterior" class="icon">
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
