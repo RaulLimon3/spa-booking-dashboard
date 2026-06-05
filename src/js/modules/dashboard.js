@@ -5,6 +5,7 @@ import { table } from "../components/tables";
 import { getLastestAppointments, getNewAppointments, getUpcomingAppointmentsToday, getTodayAppointments, getTotalClients, getTotalIncomes, updateAppointmentStatus } from "../service/appointments";
 import { getAppointments, saveAppointments } from "../service/storage";
 import { currencyFormat } from "../utils/helpers";
+import { openSuccessModal } from "./modals";
 
 export const renderDashboard = (appointments) => {
     // Extraemos los datos
@@ -94,6 +95,12 @@ const handelAppointmentStatus = (id, status) => {
     saveAppointments(updateAppointments);
 
     renderRoute(currentRoute);
+
+    openSuccessModal(
+        status === 'atendido'
+            ? 'Cita completada exitosamente'
+            : 'Cita cancelada exitosamente'
+    );
 };
 
 export { initDashboard };
