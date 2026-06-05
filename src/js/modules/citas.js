@@ -2,7 +2,7 @@ import { renderValue, statCard } from "../components/cards";
 import { appointmenteColumns } from "../components/columns";
 import { toggleDropdown } from "../components/dropdown";
 import { table } from "../components/tables";
-import { filterAppointments, getAppointmentById, getStatusAppointments, getTotalAppointments } from "../service/appointments";
+import { filterAppointments, getAppointmentById, getStatusAppointments, getTotalAppointments, paginateAppointments } from "../service/appointments";
 import { getAppointments } from "../service/storage";
 import { citas } from "../store/store";
 import { openConfirmModal, openEditModal } from "./modals";
@@ -16,9 +16,15 @@ const filters = {
     service: ''
 };
 
+// Establecemos los resultador a mostrar para la paginación
+let currentPage = 1;
+let ITEMS_PER_PAGE = 7;
+
 // Creamos la función para renderizar la tabla con filtros
 const renderAppointmentsTable = () => {
     const filterdeAppointments = filterAppointments(currentAppointments, filters);
+
+    const paginatedAppointments = paginateAppointments(filterdeAppointments, currentPage, ITEMS_PER_PAGE);
 
     const tableContainer = document.getElementById('appointmentsTableContainer');
 
@@ -26,7 +32,7 @@ const renderAppointmentsTable = () => {
 
     tableContainer.innerHTML = table({
         columns: appointmenteColumns,
-        data: filterdeAppointments
+        data: paginatedAppointments
     });
 }
 
@@ -94,6 +100,7 @@ const renderCitas = (appointments) => {
     currentAppointments = appointments;
     const totalAppointmentes = getTotalAppointments(appointments);
     const statusAppointments = getStatusAppointments(appointments);
+    const paginatedAppointments = paginateAppointments(appointments, currentPage, ITEMS_PER_PAGE);
     return `
         <div class="dashboard" id="appointments">
             <div class="dashboard__statistics">
@@ -140,7 +147,7 @@ const renderCitas = (appointments) => {
                         <div id="appointmentsTableContainer">
                             ${table({
                                 columns: appointmenteColumns,
-                                data: appointments
+                                data: paginatedAppointments
                             })}
                         </div>
                         <div class="pagination">

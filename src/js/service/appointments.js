@@ -143,10 +143,16 @@ const isHourOccupied = (appointments, date, hour, appointmentId = null) => {
     );
 };
 
+const paginateAppointments = (appointments, currentPage, itmesPerPage) => {
+    const startIndex = (currentPage - 1) * itmesPerPage;
+    const endIndex = startIndex + itmesPerPage;
+    return appointments.slice(startIndex, endIndex);
+};
+
 export {
     getTotalClients, getTotalIncomes, getNewAppointments,
     getTodayAppointments, getStatusAppointments, getTotalAppointments,
     filterAppointments, searchAppointments, getUpcomingAppointmentsToday,
     getUniqueServices, getAppointmentById, getLastestAppointments,
-    updateAppointmentStatus, updateAppointments, isHourOccupied
+    updateAppointmentStatus, updateAppointments, isHourOccupied, paginateAppointments
 };
