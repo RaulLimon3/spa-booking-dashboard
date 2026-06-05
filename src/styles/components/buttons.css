@@ -34,3 +34,20 @@
     background: var(--color-primary);
     color: var(--color-text-inverse);
 }
+
+.btn__cross {
+    background: var(--color-bg-main);
+    padding: var(--space-2);
+    border-radius: var(--radius-md);
+    transition: background 0.3s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.btn__cross:hover {
+    background: var(--btn-bg-hover);
+    box-shadow: var(--shadow-md);
+}
+
+.btn__cross:active {
+    transform: scale(0.97);
+    box-shadow: inset 2px 2px 20px rgba(0, 0, 0, 0.1);
+}

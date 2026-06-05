@@ -30,12 +30,22 @@ export const appointmentModal = (appointment = null, mode = "create") => {
             </div>
             <div class="form__group">
                 <label for="appointmentDate">Fecha de la cita</label>
-                <input type="date" name="appointmentDate" id="appointmentDate" class="input" value="${appointment?.fecha || ''}">
+                <div class="form__input-group">
+                    <input type="date" name="appointmentDate" id="appointmentDate" class="input input--full" value="${appointment?.fecha || ''}">
+                    <button type="button" class="btn__cross">
+                        <img src="./src/assets/icons/x.svg" alt="Icono de cerrar" class="icon">
+                    </button>
+                </div>
                 <span class="form__group-error-message" id="appointmentDateError">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</span>
             </div>
             <div class="form__group">
                 <label for="appointmentHour">Hora de la cita</label>
-                <input type="time" name="appointmentHour" id="appointmentHour" class="input" value="${appointment?.hora || ''}">
+                <div class="form__input-group">
+                    <input type="time" name="appointmentHour" id="appointmentHour" class="input input--full" value="${appointment?.hora || ''}">
+                    <button type="button" class="btn__cross">
+                        <img src="./src/assets/icons/x.svg" alt="Icono de cerrar" class="icon">
+                    </button>
+                </div>
                 <span class="form__group-error-message" id="appointmentHourError">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</span>
             </div>
             <button type="submit" class="btn btn__success" id="modalBtn">${mode === 'edit' ? 'Actualizar cita' : 'Guardar cita'}</button>

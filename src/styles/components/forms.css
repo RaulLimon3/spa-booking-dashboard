@@ -21,6 +21,12 @@
     gap: var(--space-1);
 }
 
+.form__input-group {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+}
+
 .form__group-error-message {
     text-align: center;
     color: var(--color-error);

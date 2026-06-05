@@ -38,3 +38,7 @@ input[type="date"] {
 .input__error {
     border-color: var(--color-error);
 }
+
+.input--full {
+    width: 100%;
+}
