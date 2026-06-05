@@ -97,6 +97,7 @@ const initForm = () => {
 const initFormControls = () => {
     const clearDateBtn = document.getElementById('clearDate');
     const clearHourBtn = document.getElementById('clearHour');
+    const inputHour = document.getElementById('appointmentHour');
 
     clearDateBtn?.addEventListener('click', () => {
         document.getElementById('appointmentDate').value = '';
@@ -104,6 +105,14 @@ const initFormControls = () => {
 
     clearHourBtn?.addEventListener('click', () => {
         document.getElementById('appointmentHour').value = '';
+    });
+
+    inputHour?.addEventListener('change', () => {
+        const [hours] = inputHour.value.split(':')
+
+        if (hours) {
+            inputHour.value = `${hours}:00`;
+        }
     });
 };
 
@@ -222,6 +231,11 @@ const validateDate = (value) => {
 };
 
 const validateHour = (value) => {
+    const [hours, minutes] = value.split(':');
+
+    if (minutes !== '00') {
+        return 'Solo se permiten horas completas';
+    }
     if (value < '09:00' || value > '18:00') {
         return 'Horario fuera de servicio';
     }
