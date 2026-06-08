@@ -1,6 +1,7 @@
 import { renderValue, statCard } from "../components/cards";
 import { appointmenteColumns } from "../components/columns";
 import { toggleDropdown } from "../components/dropdown";
+import { initPagination, pagination } from "../components/pagination";
 import { table } from "../components/tables";
 import { filterAppointments, getAppointmentById, getStatusAppointments, getTotalAppointments, paginateAppointments } from "../service/appointments";
 import { getAppointments } from "../service/storage";
@@ -22,9 +23,7 @@ let ITEMS_PER_PAGE = 7;
 
 // Creamos la función para renderizar la tabla con filtros
 const renderAppointmentsTable = () => {
-    const filterdeAppointments = filterAppointments(currentAppointments, filters);
-
-    const paginatedAppointments = paginateAppointments(filterdeAppointments, currentPage, ITEMS_PER_PAGE);
+    const { paginatedAppointments } = getVisibleAppointments();
 
     const tableContainer = document.getElementById('appointmentsTableContainer');
 
@@ -34,7 +33,7 @@ const renderAppointmentsTable = () => {
         columns: appointmenteColumns,
         data: paginatedAppointments
     });
-}
+};
 
 const initFilterControl = () => {
     const clearFilterBtn = document.getElementById('clearFilters');
@@ -57,6 +56,8 @@ const initAppointments = () => {
     toggleDropdown({ onEdit: handleEditAppointment, onDelete: handleDeleteAppointment });
 
     initFilterControl();
+
+    initPagination();
 
     const searchInput = document.getElementById('appointmentsSearch');
     const dateInput = document.getElementById('appointmentsDate');
@@ -84,7 +85,7 @@ const initAppointments = () => {
         filters.service = e.target.value;
         renderAppointmentsTable();
     });
-}
+};
 
 const handleEditAppointment = (id) => {
     const appointment = getAppointmentById(currentAppointments, id);
@@ -94,13 +95,21 @@ const handleEditAppointment = (id) => {
 const handleDeleteAppointment = (id) => {
     const appointments = getAppointments();
     openConfirmModal(id);
-}
+};
+
+const getVisibleAppointments = () => {
+    const filteredAppointments = filterAppointments(currentAppointments, filters);
+    return {
+        filteredAppointments,
+        paginatedAppointments: paginateAppointments(filteredAppointments, currentPage, ITEMS_PER_PAGE)
+    };
+};
 
 const renderCitas = (appointments) => {
     currentAppointments = appointments;
     const totalAppointmentes = getTotalAppointments(appointments);
     const statusAppointments = getStatusAppointments(appointments);
-    const paginatedAppointments = paginateAppointments(appointments, currentPage, ITEMS_PER_PAGE);
+    const { filteredAppointments, paginatedAppointments } = getVisibleAppointments();
     return `
         <div class="dashboard" id="appointments">
             <div class="dashboard__statistics">
@@ -150,23 +159,7 @@ const renderCitas = (appointments) => {
                                 data: paginatedAppointments
                             })}
                         </div>
-                        <div class="pagination">
-                            <div class="pagination__results">
-                                <p class="pagination__info">Resultados: 
-                                    <span class="pagination__result">1 - 7</span> de 
-                                    <span class="pagination__result">20</span>
-                                </p>
-                            </div>
-                            <div class="pagination__buttons">
-                                <button type="button" class="pagination__btn pagination__btn--hidden" id="paginationPrev">
-                                    <img src="./src/assets/icons/chevron-left.svg" alt="Icono de anterior" class="icon">
-                                </button>
-                                <span class="pagination__page">1</span>
-                                <button type="button" class="pagination__btn" id="paginationNext">
-                                    <img src="./src/assets/icons/chevron-right.svg" alt="Icono de anterior" class="icon">
-                                </button>
-                            </div>
-                        </div>
+                        ${pagination(currentPage, ITEMS_PER_PAGE, filteredAppointments.length)}
                     </div>
                 </div>
             </div>
