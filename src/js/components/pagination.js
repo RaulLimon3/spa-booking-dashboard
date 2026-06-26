@@ -56,4 +56,18 @@ const getPaginationState = (currentPage, totalResults, itemsPerPage) => {
     };
 };
 
-export { pagination, initPagination };
+const nextPage = (currentPage, totalResults, itemsPerPage) => {
+    const { showNext } = getPaginationState(
+        currentPage, totalResults, itemsPerPage
+    );
+    return showNext ? currentPage + 1 : currentPage;
+};
+
+const prevPage = (currentPage, totalItems, itemsPerPage) => {
+    const { showPrev } = getPaginationState(
+        currentPage, totalItems, itemsPerPage
+    );
+    return showPrev ? currentPage - 1 : currentPage;
+};
+
+export { pagination, getPaginationState, initPagination, nextPage, prevPage };

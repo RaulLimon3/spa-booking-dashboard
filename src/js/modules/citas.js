@@ -1,7 +1,7 @@
 import { renderValue, statCard } from "../components/cards";
 import { appointmenteColumns } from "../components/columns";
 import { toggleDropdown } from "../components/dropdown";
-import { initPagination, pagination } from "../components/pagination";
+import { getPaginationState, initPagination, nextPage, pagination, prevPage } from "../components/pagination";
 import { table } from "../components/tables";
 import { filterAppointments, getAppointmentById, getStatusAppointments, getTotalAppointments, paginateAppointments } from "../service/appointments";
 import { getAppointments } from "../service/storage";
@@ -119,19 +119,15 @@ const getVisibleAppointments = () => {
 };
 
 const handleNextPage = () => {
-    const {filteredAppointments} = getVisibleAppointments();
-    const totalPages = Math.ceil(filteredAppointments.length / ITEMS_PER_PAGE);
-    if (currentPage < totalPages) {
-        currentPage++;
-        renderAppointmentsTable();
-    }
+    const { filteredAppointments } = getVisibleAppointments();
+    currentPage = nextPage(currentPage, filteredAppointments.length, ITEMS_PER_PAGE);
+    renderAppointmentsTable();
 };
 
 const handlePrevPage = () => {
-    if (currentPage > 1) {
-        currentPage--;
-        renderAppointmentsTable();
-    }
+    const { filteredAppointments } = getVisibleAppointments();
+    currentPage = prevPage(currentPage, filteredAppointments.length, ITEMS_PER_PAGE);
+    renderAppointmentsTable();
 };
 
 const renderCitas = (appointments) => {
