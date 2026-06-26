@@ -23,9 +23,10 @@ let ITEMS_PER_PAGE = 7;
 
 // Creamos la función para renderizar la tabla con filtros
 const renderAppointmentsTable = () => {
-    const { paginatedAppointments } = getVisibleAppointments();
+    const { filteredAppointments, paginatedAppointments } = getVisibleAppointments();
 
     const tableContainer = document.getElementById('appointmentsTableContainer');
+    const paginationContainer = document.getElementById('paginationContainer');
 
     if (!tableContainer) return;
 
@@ -33,6 +34,14 @@ const renderAppointmentsTable = () => {
         columns: appointmenteColumns,
         data: paginatedAppointments
     });
+
+    paginationContainer.innerHTML = pagination(
+        currentPage,
+        ITEMS_PER_PAGE, 
+        filteredAppointments.length
+    );
+
+    initPagination({ onNext: handleNextPage, onPrev: handlePrevPage });
 };
 
 const initFilterControl = () => {
@@ -57,7 +66,7 @@ const initAppointments = () => {
 
     initFilterControl();
 
-    initPagination();
+    initPagination({ onNext: handleNextPage, onPrev: handlePrevPage });
 
     const searchInput = document.getElementById('appointmentsSearch');
     const dateInput = document.getElementById('appointmentsDate');
@@ -68,21 +77,25 @@ const initAppointments = () => {
 
     searchInput.addEventListener('input', (e) => {
         filters.query = e.target.value;
+        currentPage = 1;
         renderAppointmentsTable();
     });
 
     dateInput.addEventListener('change', (e) => {
         filters.date = e.target.value;
+        currentPage = 1;
         renderAppointmentsTable();
     });
 
     statusInput.addEventListener('change', (e) => {
         filters.status = e.target.value;
+        currentPage = 1;
         renderAppointmentsTable();
     });
 
     serviceInput.addEventListener('change', (e) => {
         filters.service = e.target.value;
+        currentPage = 1;
         renderAppointmentsTable();
     });
 };
@@ -103,6 +116,22 @@ const getVisibleAppointments = () => {
         filteredAppointments,
         paginatedAppointments: paginateAppointments(filteredAppointments, currentPage, ITEMS_PER_PAGE)
     };
+};
+
+const handleNextPage = () => {
+    const {filteredAppointments} = getVisibleAppointments();
+    const totalPages = Math.ceil(filteredAppointments.length / ITEMS_PER_PAGE);
+    if (currentPage < totalPages) {
+        currentPage++;
+        renderAppointmentsTable();
+    }
+};
+
+const handlePrevPage = () => {
+    if (currentPage > 1) {
+        currentPage--;
+        renderAppointmentsTable();
+    }
 };
 
 const renderCitas = (appointments) => {
@@ -159,7 +188,9 @@ const renderCitas = (appointments) => {
                                 data: paginatedAppointments
                             })}
                         </div>
-                        ${pagination(currentPage, ITEMS_PER_PAGE, filteredAppointments.length)}
+                        <div id="paginationContainer">
+                            ${pagination(currentPage, ITEMS_PER_PAGE, filteredAppointments.length)}
+                        </div>
                     </div>
                 </div>
             </div>
