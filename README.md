@@ -8,7 +8,7 @@ This project was built as part of my frontend portfolio to practice modular Java
 
 ## 🚀 Live Demo
 
-🔗 Coming soon...
+🔗 https://spa-booking-dashboard.vercel.app/
 
 ---
 
