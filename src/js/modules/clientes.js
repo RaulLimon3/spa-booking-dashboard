@@ -4,6 +4,8 @@ import { searchAppointments } from "../service/appointments";
 let currentAppoitnments = [];
 let defaultQuery = '';
 
+import bookUser from "../../assets/icons/book-user.svg";
+
 const renderClientsTable = () => {
     const searchClient = searchAppointments(currentAppoitnments, defaultQuery);
     const clientTable = document.getElementById('clientsTable');
@@ -34,7 +36,7 @@ const renderClientes = (appointments) => {
                     <div class="card__content">
                         <div class="card__heading">
                             <div class="card__heading-title">
-                                <img src="./src/assets/icons/book-user.svg" alt="Icono de clientes">
+                                <img src="${bookUser}" alt="Icono de clientes">
                                 <p class="card__text">Clientes</p>
                             </div>
                         </div>

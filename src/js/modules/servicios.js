@@ -2,6 +2,8 @@ import { servicesColumns } from "../components/columns";
 import { table } from "../components/tables";
 import { services } from "../utils/services";
 
+import settings from "../../assets/icons/settings-2.svg";
+
 export const renderServicios = (appointments) => {
     const serviceList = Object.values(services);
     return `
@@ -11,7 +13,7 @@ export const renderServicios = (appointments) => {
                     <div class="card__content">
                         <div class="card__heading">
                             <div class="card__heading-title">
-                                <img src="./src/assets/icons/settings-2.svg" alt="Icono de servicios">
+                                <img src="${settings}" alt="Icono de servicios">
                                 <p class="card__text">Servicios</p>
                             </div>
                         </div>

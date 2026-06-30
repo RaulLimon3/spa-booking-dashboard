@@ -7,6 +7,13 @@ import { getAppointments, saveAppointments } from "../service/storage";
 import { currencyFormat } from "../utils/helpers";
 import { openSuccessModal } from "./modals";
 
+import calendar from "../../assets/icons/calendar.svg";
+import incomes from "../../assets/icons/banknote-arrow-up.svg";
+import calendarPlus from "../../assets/icons/calendar-plus.svg";
+import bookUser from "../../assets/icons/book-user.svg";
+import calendarClock from "../../assets/icons/calendar-clock.svg";
+import bookPlus from "../../assets/icons/book-plus.svg";
+
 export const renderDashboard = (appointments) => {
     // Extraemos los datos
     const todayAppointments = getTodayAppointments(appointments);
@@ -20,17 +27,17 @@ export const renderDashboard = (appointments) => {
     return `
         <div class="dashboard" id="dashboard">
             <div class="dashboard__statistics">
-            ${statCard({ icon: './src/assets/icons/calendar.svg', text: 'Total de citas hoy', value: todayAppointments })}
-            ${statCard({ icon: './src/assets/icons/banknote-arrow-up.svg', text: 'Total de ingresos', value: currencyFormat(totalIncomes) })}
-            ${statCard({ icon: './src/assets/icons/calendar-plus.svg', text: 'Total de citas nuevas', value: newAppointments })}
-            ${statCard({ icon: './src/assets/icons/book-user.svg', text: 'Total de clientes', value: totalClients })}
+            ${statCard({ icon: calendar, text: 'Total de citas hoy', value: todayAppointments })}
+            ${statCard({ icon: incomes, text: 'Total de ingresos', value: currencyFormat(totalIncomes) })}
+            ${statCard({ icon: calendarPlus, text: 'Total de citas nuevas', value: newAppointments })}
+            ${statCard({ icon: bookUser, text: 'Total de clientes', value: totalClients })}
             </div>
             <div class="dashboard__information">
                 <div class="card">
                     <div class="card__content">
                         <div class="card__heading">
                             <div class="card__heading-title">
-                                <img src="./src/assets/icons/calendar-clock.svg" alt="Icono de citas proximas">
+                                <img src="${calendarClock}" alt="Icono de citas proximas">
                                 <p class="card__text">Proximas citas</p>
                             </div>
                         </div>
@@ -46,7 +53,7 @@ export const renderDashboard = (appointments) => {
                     <div class="card__content">
                         <div class="card__heading">
                             <div class="card__heading-title">
-                                <img src="./src/assets/icons/book-plus.svg" alt="Icono de nuevas citas">
+                                <img src="${bookPlus}" alt="Icono de nuevas citas">
                                 <p class="card__text">Nuevas citas</p>
                             </div>
                         </div>

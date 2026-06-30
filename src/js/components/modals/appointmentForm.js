@@ -1,10 +1,12 @@
+import xIcon from "../../../assets/icons/x.svg";
+
 export const appointmentModal = (appointment = null, mode = "create") => {
     return `
     <div class="modal__form-container">
         <div class="modal__heading">
             <h2 class="modal__title" id="modalTittle">${mode === 'edit' ? 'Editar cita' : 'Crear nueva cita'}</h2>
             <button type="button" class="btn modal__close" id="closeModal">
-                <img src="./src/assets/icons/x.svg" alt="Icono de cerrar" class="icon">
+                <img src="${xIcon}" alt="Icono de cerrar" class="icon">
             </button>
         </div>
         <form class="form__appointment" id="appointmentForm" data-id="${appointment?.id || ''}">
@@ -33,7 +35,7 @@ export const appointmentModal = (appointment = null, mode = "create") => {
                 <div class="form__input-group">
                     <input type="date" name="appointmentDate" id="appointmentDate" class="input input--full" value="${appointment?.fecha || ''}">
                     <button type="button" class="btn__cross" id="clearDate">
-                        <img src="./src/assets/icons/x.svg" alt="Icono de cerrar" class="icon">
+                        <img src="${xIcon}" alt="Icono de cerrar" class="icon">
                     </button>
                 </div>
                 <span class="form__group-error-message" id="appointmentDateError">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</span>
@@ -43,7 +45,7 @@ export const appointmentModal = (appointment = null, mode = "create") => {
                 <div class="form__input-group">
                     <input type="time" name="appointmentHour" id="appointmentHour" class="input input--full" value="${appointment?.hora || ''}">
                     <button type="button" class="btn__cross" id="clearHour">
-                        <img src="./src/assets/icons/x.svg" alt="Icono de cerrar" class="icon">
+                        <img src="${xIcon}" alt="Icono de cerrar" class="icon">
                     </button>
                 </div>
                 <span class="form__group-error-message" id="appointmentHourError">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</span>

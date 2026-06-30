@@ -7,6 +7,13 @@ import { filterAppointments, getAppointmentById, getStatusAppointments, getTotal
 import { getAppointments } from "../service/storage";
 import { openConfirmModal, openEditModal } from "./modals";
 
+import bookOpen from "../../assets/icons/book-open.svg";
+import bookCheck from "../../assets/icons/book-check.svg";
+import bookAlert from "../../assets/icons/book-alert.svg";
+import bookX from "../../assets/icons/book-x.svg";
+import bookPlus from "../../assets/icons/book-plus.svg";
+import funnelX from "../../assets/icons/funnel-x.svg";
+
 let currentAppointments = [];
 // Establecemos los filtros por defecto
 const filters = {
@@ -137,21 +144,21 @@ const renderCitas = (appointments) => {
     return `
         <div class="dashboard" id="appointments">
             <div class="dashboard__statistics">
-            ${statCard({ icon: './src/assets/icons/book-open.svg', text: 'Total de citas', value: totalAppointmentes })}
-            ${statCard({ icon: './src/assets/icons/book-check.svg', text: 'Citas atendidas', value: statusAppointments.attended })}
-            ${statCard({ icon: './src/assets/icons/book-alert.svg', text: 'Citas pendientes', value: statusAppointments.pending })}
-            ${statCard({ icon: './src/assets/icons/book-x.svg', text: 'Citas canceladas', value: statusAppointments.canceled })}
+            ${statCard({ icon: bookOpen, text: 'Total de citas', value: totalAppointmentes })}
+            ${statCard({ icon: bookCheck, text: 'Citas atendidas', value: statusAppointments.attended })}
+            ${statCard({ icon: bookAlert, text: 'Citas pendientes', value: statusAppointments.pending })}
+            ${statCard({ icon: bookX, text: 'Citas canceladas', value: statusAppointments.canceled })}
             </div>
             <div class="dashboard__information">
                 <div class="card">
                     <div class="card__content">
                         <div class="card__heading">
                             <div class="card__heading-title">
-                                <img src="./src/assets/icons/book-plus.svg" alt="Icono de nuevas citas">
+                                <img src="${bookPlus}" alt="Icono de nuevas citas">
                                 <p class="card__text">Nuevas citas</p>
                             </div>
                             <button type="button" class="btn__cross" id="clearFilters">
-                                <img src="./src/assets/icons/funnel-x.svg" alt="Icono de cerrar" class="icon">
+                                <img src="${funnelX}" alt="Icono de cerrar" class="icon">
                             </button>
                         </div>
                         <div class="card__panel-control">
