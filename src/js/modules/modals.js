@@ -1,7 +1,7 @@
 import { currentRoute, renderRoute } from "../app";
 import { initForm, resetFormState } from "../components/form";
 import { appointmentModal } from "../components/modals/appointmentForm";
-import { stateModal } from "../components/modals/statemodal";
+import { stateModal } from "../components/modals/stateModal";
 import { updateAppointments } from "../service/appointments";
 import { getAppointments, saveAppointments } from "../service/storage";
 
