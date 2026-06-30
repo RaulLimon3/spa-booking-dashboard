@@ -1,3 +1,6 @@
+import chevronLeft from "../../assets/icons/chevron-left.svg";
+import chevronRight from "../../assets/icons/chevron-right.svg";
+
 const pagination = (currentPage, itemsPerPage, totalItems) => {
     const firstResult = totalItems === 0 ? 0 : (currentPage - 1) * itemsPerPage + 1;
     const lastResult = Math.min(currentPage * itemsPerPage, totalItems);
@@ -9,11 +12,11 @@ const pagination = (currentPage, itemsPerPage, totalItems) => {
             </div>
             <div class="pagination__buttons">
                 <button type="button" class="pagination__btn ${!showPrev ? 'pagination__btn--hidden' : ''}" id="paginationPrev">
-                    <img src="./src/assets/icons/chevron-left.svg" alt="Icono de anterior" class="icon">
+                    <img src="${chevronLeft}" alt="Icono de anterior" class="icon">
                 </button>
                 ${paginationPages(currentPage)}
                 <button type="button" class="pagination__btn ${!showNext ? 'pagination__btn--hidden' : ''}" id="paginationNext">
-                    <img src="./src/assets/icons/chevron-right.svg" alt="Icono de anterior" class="icon">
+                    <img src="${chevronRight}" alt="Icono de anterior" class="icon">
                 </button>
             </div>
         </div>
