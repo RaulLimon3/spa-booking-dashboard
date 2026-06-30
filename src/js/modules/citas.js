@@ -5,7 +5,6 @@ import { getPaginationState, initPagination, nextPage, pagination, prevPage } fr
 import { table } from "../components/tables";
 import { filterAppointments, getAppointmentById, getStatusAppointments, getTotalAppointments, paginateAppointments } from "../service/appointments";
 import { getAppointments } from "../service/storage";
-import { citas } from "../store/store";
 import { openConfirmModal, openEditModal } from "./modals";
 
 let currentAppointments = [];

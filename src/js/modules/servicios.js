@@ -1,6 +1,5 @@
 import { servicesColumns } from "../components/columns";
 import { table } from "../components/tables";
-import { citas } from "../store/store";
 import { services } from "../utils/services";
 
 export const renderServicios = (appointments) => {

@@ -4,7 +4,6 @@ import { initAppointments, renderCitas } from "./modules/citas";
 import { initClients, renderClientes } from "./modules/clientes";
 import { initDashboard, renderDashboard } from "./modules/dashboard";
 import { renderServicios } from "./modules/servicios";
-import { citas } from "./store/store";
 import { getAppointments } from "./service/storage";
 
 let currentRoute = null;

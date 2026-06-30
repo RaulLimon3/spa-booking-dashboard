@@ -1,8 +1,6 @@
 import {  clientColumns } from "../components/columns";
 import { table } from "../components/tables";
 import { searchAppointments } from "../service/appointments";
-import { citas } from "../store/store";
-
 let currentAppoitnments = [];
 let defaultQuery = '';
 
